@@ -59,8 +59,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>powershell -NoProfile -ExecutionPolicy RemoteSigned -file $(ProjectDir)\post-build.ps1
-                    call $(ProjectDir)/../../../RimWorldWin64.exe
-    </PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>del "$(TargetDir)*.*" /q</PreBuildEvent>
