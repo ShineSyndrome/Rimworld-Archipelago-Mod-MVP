@@ -12,7 +12,6 @@ using Verse;
 
 namespace RimworldArchipelago.Client
 {
-
     public static class ArchipelagoWorldComp
     {
         private static ModLogger Log => Main.Instance.Log;
@@ -49,7 +48,6 @@ namespace RimworldArchipelago.Client
         {
 
         }
-
 
         public void ReceiveItem(long archipelagoItemId)
         {

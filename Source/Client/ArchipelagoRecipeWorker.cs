@@ -10,7 +10,6 @@ namespace RimworldArchipelago.Client
 {
     public class ArchipelagoRecipeWorker : Verse.RecipeWorker
     {
-
         public override void Notify_IterationCompleted(Pawn billDoer, List<Thing> ingredients)
         {
             base.Notify_IterationCompleted(billDoer, ingredients);

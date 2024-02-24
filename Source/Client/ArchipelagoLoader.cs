@@ -59,7 +59,6 @@ namespace RimworldArchipelago
 
         }
 
-
         public async Task Load()
         {
             Log.Message("ArchipelagoLoader started...");
@@ -189,9 +188,6 @@ namespace RimworldArchipelago
             Log.Trace(" Purchase Locations: " + JsonConvert.SerializeObject(PurchaseLocations));
         }
 
-        /// <summary>
-        /// The research provided as Archipelago items should be obtained from Archipelago. Prevent normal research of them.
-        /// </summary>
         private void DisableNormalResearch()
         {
             // use our def map, not all ResearchProjectDefs, in case there are researches that we will not get from Archipelago e.g. from mods
@@ -205,13 +201,10 @@ namespace RimworldArchipelago
                 }
                 else
                 {
-                    // making it a prerequisite of itself should make it impossible to research directly
-                    // NEVERMIND IT MAKES RIMWORLD CTD 😂
-                    //def.prerequisites = def.prerequisites ?? new List<ResearchProjectDef>();
-                    //def.prerequisites?.Add(def);
-
-                    // yank it out of its normal research tab so it can't be selected or distract the player
-                    // note some alternate research ui mod may cause an issue?
+                    // Removing all research prequisites stops later technoligies
+                    // back-filling earlier requirements.
+                    def.prerequisites = new List<ResearchProjectDef>();
+                    // Hide technologies on main tab to stop vanilla research.
                     def.tab = null;
                 }
             }
@@ -369,8 +362,6 @@ namespace RimworldArchipelago
                 }
             };
         }
-
-
     }
 }
 
