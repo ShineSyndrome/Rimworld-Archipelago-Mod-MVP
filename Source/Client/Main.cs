@@ -20,15 +20,15 @@ namespace RimworldArchipelago.Client
     public class Main : HugsLib.ModBase
     {
         public override string ModIdentifier => "Archipelago";
+
         public Main()
         {
             Instance = this;
         }
+
         internal static Main Instance { get; private set; }
 
         public ModLogger Log => base.Logger;
-
-        //public Harmony Harmony;
         public ArchipelagoSession Session;
 
         public string Address { get; private set; } = "127.0.0.1:38281";

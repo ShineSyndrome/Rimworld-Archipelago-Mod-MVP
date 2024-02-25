@@ -1,58 +1,69 @@
 ﻿using HarmonyLib;
 using HugsLib.Utils;
 using RimWorld;
+using RimworldArchipelago.Client;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Contexts;
 using UnityEngine;
 using Verse;
 
-namespace RimworldArchipelago.Client.UI
+namespace RimworldArchipelago.Patches
 {
     [HarmonyPatch(typeof(MainMenuDrawer), nameof(MainMenuDrawer.DoMainMenuControls))]
-    public static class MainMenuMarker
+    public static class DoMainMenuControls
     {
         public static bool drawing;
 
-        static void Prefix() => drawing = true;
-        static void Postfix() => drawing = false;
-    }
+        static bool Prefix(ref Rect rect) 
+        {
+            drawing = true;
+            rect.height += 45f;
 
-    [HarmonyPatch(typeof(MainMenuDrawer), nameof(MainMenuDrawer.DoMainMenuControls))]
-    public static class MainMenu_AddHeight
-    {
-        static void Prefix(ref Rect rect) => rect.height += 45f;
+            return true;
+        }
+
+        static void Postfix()
+        {
+            drawing = false;
+        } 
     }
 
     [HarmonyPatch(typeof(OptionListingUtility), nameof(OptionListingUtility.DrawOptionListing))]
-    public static class MainMenuPatch
+    public static class DrawOptionListing
     {
         static void Prefix(Rect rect, List<ListableOption> optList)
         {
-            if (!MainMenuMarker.drawing) return;
-
-            if (Current.ProgramState == ProgramState.Entry)
+            if (!DoMainMenuControls.drawing)
             {
-                int newColony = optList.FindIndex(opt => opt.label == "NewColony".Translate());
-                if (newColony != -1)
-                {
-                    if (Main.Instance.Session == null)
-                    {
-                        optList.Insert(newColony + 1, new ListableOption("Archipelago", () =>
-                        {
-                            Find.WindowStack.Add(new ArchipelagoOptionsMenu());
-                        }));
-                    }
-                    else
-                    {
-                        optList.Insert(newColony + 1, new ListableOption("Connected!", () =>
-                        {
-                            Messages.Message("RimWorld can't unload Archipelago's changes.\nRestart RimWorld to connect to a different Archipelago server or player slot.",
-                                MessageTypeDefOf.SilentInput, false);
-                        }));
-                    }
-                }
+                return;
             }
+
+            if (Current.ProgramState != ProgramState.Entry)
+            {
+                return;
+            }
+            
+            int newColony = optList.FindIndex(opt => opt.label == "NewColony".Translate());
+
+            if (newColony == -1)
+            {
+                return;
+            }
+
+            if (Main.Instance.Session == null)
+            {
+                optList.Insert(newColony + 1, new ListableOption("Archipelago", () =>
+                {
+                    Find.WindowStack.Add(new ArchipelagoOptionsMenu());
+                }));
+            }
+            else
+            {
+                optList.Insert(newColony + 1, new ListableOption("Connected!", () =>
+                {
+                    Messages.Message("RimWorld can't unload Archipelago's changes.\nRestart RimWorld to connect to a different Archipelago server or player slot.",
+                        MessageTypeDefOf.SilentInput, false);
+                }));
+            }   
         }
     }
 
@@ -64,6 +75,7 @@ namespace RimworldArchipelago.Client.UI
         public string slotName = Main.Instance.PlayerSlot;
         public string acceptBtnLabel;
         public string closeBtnLabel;
+
         public ArchipelagoOptionsMenu()
         {
             closeOnClickedOutside = true;

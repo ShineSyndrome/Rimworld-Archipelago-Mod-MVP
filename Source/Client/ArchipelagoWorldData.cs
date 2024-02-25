@@ -18,17 +18,20 @@ namespace RimworldArchipelago.Client
         internal static HashSet<long> ItemsAwaitingReceipt = new HashSet<long>();
 
         private static ArchipelagoWorldData comp => Find.World?.GetComponent<ArchipelagoWorldData>();
-        
+
         public static void ReceiveItem(long archipelagoItemId)
         {
-            // check that we are actually ready to receive items
-            if (Find.AnyPlayerHomeMap == null || comp == null)
+            bool readyToRecieve = Find.AnyPlayerHomeMap != null || comp != null;
+
+            if (!readyToRecieve)
             {
                 ItemsAwaitingReceipt.Add(archipelagoItemId);
                 Log.Message($"Could not yet receive Archipelago item {archipelagoItemId}");
-                return;
             }
-            comp.ReceiveItem(archipelagoItemId);
+            else
+            {
+                comp.ReceiveItem(archipelagoItemId);
+            }
         }
 
         public static void Reset()
@@ -55,6 +58,7 @@ namespace RimworldArchipelago.Client
             {
                 ArchipelagoWorldComp.ItemsAwaitingReceipt.Remove(archipelagoItemId);
             }
+
             ReceivedItems.Add(archipelagoItemId);
 
             if (Main.Instance.ArchipeligoItemIdToRimWorldDef.ContainsKey(archipelagoItemId))

@@ -49,7 +49,6 @@ namespace RimworldArchipelago
         public readonly IDictionary<long, ResearchProjectDef> AddedResearchDefs = new Dictionary<long, ResearchProjectDef>();
         public readonly IDictionary<long, RecipeDef> AddedRecipeDefs = new Dictionary<long, RecipeDef>();
 
-
         private ArchipelagoSession Session => Main.Instance.Session;
 
         private bool isArchipelagoLoaded = false;
@@ -141,7 +140,7 @@ namespace RimworldArchipelago
             var allLocations = Session.Locations.AllLocations.ToArray();
             var items = (await Session.Locations.ScoutLocationsAsync(false, allLocations)).Locations;
 
-
+            // todo: parrallelism overkill, make it procedural.
             Parallel.ForEach(
                 items,
                 new ParallelOptions
@@ -188,28 +187,6 @@ namespace RimworldArchipelago
             Log.Trace(" Purchase Locations: " + JsonConvert.SerializeObject(PurchaseLocations));
         }
 
-        private void DisableNormalResearch()
-        {
-            // use our def map, not all ResearchProjectDefs, in case there are researches that we will not get from Archipelago e.g. from mods
-            var researchDefNames = Main.Instance.ArchipeligoItemIdToRimWorldDef.Values.Where(def => def.DefType == "ResearchProjectDef").Select(def => def.DefName);
-            foreach (var researchName in researchDefNames)
-            {
-                var def = DefDatabase<ResearchProjectDef>.GetNamed(researchName);
-                if (def == null)
-                {
-                    Log.Error($"Could not find expected ResearchProjectDef by name {researchName}");
-                }
-                else
-                {
-                    // Removing all research prequisites stops later technoligies
-                    // back-filling earlier requirements.
-                    def.prerequisites = new List<ResearchProjectDef>();
-                    // Hide technologies on main tab to stop vanilla research.
-                    def.tab = null;
-                }
-            }
-        }
-
         /// <summary>
         /// seems clunky, but here we combine the research segment of Locations with the research-only metadata,
         /// output them as RimWorld ResearchProjectDefs, and add them to the Archipelago research tab
@@ -235,7 +212,8 @@ namespace RimworldArchipelago
                     label = locationData.ExtendedLabel,
                     tab = tab,
                     researchViewX = kvp.Value.x,
-                    researchViewY = kvp.Value.y
+                    researchViewY = kvp.Value.y,
+                    //requiredResearchFacilities = Thing
                 };
                 AddedResearchDefs.Add(kvp.Key, def);
                 Main.Instance.DefNameToArchipelagoId[def.defName] = kvp.Key;
@@ -249,6 +227,28 @@ namespace RimworldArchipelago
             var researchesAfter = DefDatabase<ResearchProjectDef>.DefCount;
             Log.Trace($"number of researches after: {researchesAfter}");
             ResearchProjectDef.GenerateNonOverlappingCoordinates();
+        }
+
+        private void DisableNormalResearch()
+        {
+            // use our def map, not all ResearchProjectDefs, in case there are researches that we will not get from Archipelago e.g. from mods
+            var researchDefNames = Main.Instance.ArchipeligoItemIdToRimWorldDef.Values.Where(def => def.DefType == "ResearchProjectDef").Select(def => def.DefName);
+            foreach (var researchName in researchDefNames)
+            {
+                var def = DefDatabase<ResearchProjectDef>.GetNamed(researchName);
+                if (def == null)
+                {
+                    Log.Error($"Could not find expected ResearchProjectDef by name {researchName}");
+                }
+                else
+                {
+                    // Removing all research prequisites stops
+                    // later technoligies back-filling earlier requirements.
+                    def.prerequisites = new List<ResearchProjectDef>();
+                    // Hide technologies on main tab to stop vanilla research.
+                    def.tab = null;
+                }
+            }
         }
 
         private void LoadCraftDefs()
