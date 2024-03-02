@@ -36,6 +36,8 @@
     <Compile Include="Client\ArchipelagoLoader.cs" />
     <Compile Include="Client\ArchipelagoRecipeWorker.cs" />
     <Compile Include="Client\ArchipelagoWorldData.cs" />
+    <Compile Include="Client\Extensions\LongExtensions.cs" />
+    <Compile Include="Client\Services\MultiWorldService.cs" />
     <Compile Include="Patches\GameVictory.cs" />
     <Compile Include="Patches\FinishProject.cs" />
     <Compile Include="Client\Main.cs" />

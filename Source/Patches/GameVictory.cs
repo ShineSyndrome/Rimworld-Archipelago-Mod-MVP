@@ -10,6 +10,7 @@ namespace RimworldArchipelago.Patches
     {
         public static void Postfix()
         {
+            
             FileLog.Log("Endgame reached.");
         }
     }
