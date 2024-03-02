@@ -1,7 +1,7 @@
+#Put your local test mod assembly location here
+$rw_test_mod_assembly_dest = "";
 
-# HugsLib and Harmony dlls are already in their respective mods, shared depenedencies
-# no vs copy setting? Just delete after he fact I guess
-
+#Clean up library mods, the dll's already exist because of mod dependencies set in About.xml
 $delete = @("Harmony", "0Harmony", "HugsLib")
 
 foreach ($item in $delete) { 
@@ -12,17 +12,9 @@ foreach ($item in $delete) {
     }
 }
 
-$items = Get-ChildItem -Path ../assemblies
-$order = @("Harmony", "Newtonsoft", "websocket", "Archipelago.MultiClient", "RimworldArchipelago")
-Write-Output "Assemblies contains the following: $items" 
-foreach ($item in $items) { 
-    for ( $index = 0; $index -lt $order.count; $index++) {
-        if ($item.Name.StartsWith($order[$index])) {
-            $item | Rename-Item -NewName { "$index"+"_"+$_.Name };
-        }
-    }
+if ($rw_test_mod_location)
+{
+	robocopy "../assemblies/" $rw_test_mod_assembly_dest /E
 }
-Write-Output "Assembly renaming complete" 
-$items = Get-ChildItem -Path ../assemblies
-Write-Output "Assemblies contains the following: $items" 
+
 
