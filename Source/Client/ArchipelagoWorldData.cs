@@ -2,7 +2,6 @@
 using HugsLib.Utils;
 using Newtonsoft.Json;
 using RimWorld.Planet;
-using RimworldArchipelago.Client.Services;
 using Steamworks;
 using System;
 using System.Collections.Generic;
@@ -42,7 +41,7 @@ namespace RimworldArchipelago.Client
         }
     }
 
-    public class ArchipelagoWorldData : WorldComponent
+    public class ArchipelagoWorldData : RimWorld.Planet.WorldComponent
     {
         private static ModLogger Log => Main.Instance.Log;
 
@@ -62,9 +61,9 @@ namespace RimworldArchipelago.Client
 
             ReceivedItems.Add(archipelagoItemId);
 
-            if (MultiWorldService.Instance.ArchipeligoItemIdToRimWorldDef.ContainsKey(archipelagoItemId))
+            if (Main.Instance.ArchipeligoItemIdToRimWorldDef.ContainsKey(archipelagoItemId))
             {
-                var defMapping = MultiWorldService.Instance.ArchipeligoItemIdToRimWorldDef[archipelagoItemId];
+                var defMapping = Main.Instance.ArchipeligoItemIdToRimWorldDef[archipelagoItemId];
                 var defName = defMapping.DefName;
                 var defType = defMapping.DefType;
 
@@ -90,6 +89,21 @@ namespace RimworldArchipelago.Client
             base.ExposeData();
             Scribe_Collections.Look(ref ReceivedItems, "Archipelago_ReceivedItems");
             Scribe_Collections.Look(ref ReceivedItems, "Archipelago_ItemsAwaitingReceipt");
+        }
+
+        public override void WorldComponentUpdate()
+        {
+            base.WorldComponentUpdate();
+        }
+
+        public override void WorldComponentTick()
+        {
+            base.WorldComponentTick();
+        }
+
+        public override void FinalizeInit()
+        {
+            base.FinalizeInit();
         }
     }
 }

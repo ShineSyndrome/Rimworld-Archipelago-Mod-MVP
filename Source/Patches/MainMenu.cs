@@ -110,7 +110,6 @@ namespace RimworldArchipelago.Patches
                 if (Widgets.ButtonText(btnsRect.RightPartPixels(100), closeBtnLabel, true, false))
                     Close();
         }
-
         public override void OnAcceptKeyPressed()
         {
             base.OnAcceptKeyPressed();
@@ -121,7 +120,7 @@ namespace RimworldArchipelago.Patches
         {
             Log.Message($"address: {address}");
             Log.Message($"slotName: {slotName}");
-            return Main.Instance.Connect(address, slotName).Result;
+            return Main.Instance.Connect(address, slotName);
         }
     }
 }

@@ -4,8 +4,6 @@ using HugsLib.Utils;
 using Newtonsoft.Json;
 using RimWorld;
 using RimworldArchipelago.Client;
-using RimworldArchipelago.Client.Extensions;
-using RimworldArchipelago.Client.Services;
 using System;
 using System.Collections;
 using System.Collections.Concurrent;
@@ -42,16 +40,16 @@ namespace RimworldArchipelago
 
         public IDictionary<int, PlayerInfo> Players { get; private set; }
 
-        public IDictionary<long, Location> ResearchLocations { get; } = new ConcurrentDictionary<long, Location>();
-        public IDictionary<long, Location> CraftLocations { get; } = new ConcurrentDictionary<long, Location>();
-        public IDictionary<long, Location> PurchaseLocations { get; } = new ConcurrentDictionary<long, Location>();
+        public readonly IDictionary<long, Location> ResearchLocations = new ConcurrentDictionary<long, Location>();
+        public readonly IDictionary<long, Location> CraftLocations = new ConcurrentDictionary<long, Location>();
+        public readonly IDictionary<long, Location> PurchaseLocations = new ConcurrentDictionary<long, Location>();
         public int CurrentPlayerId;
         private IDictionary<string, object> SlotData { get; set; }
 
         public readonly IDictionary<long, ResearchProjectDef> AddedResearchDefs = new Dictionary<long, ResearchProjectDef>();
         public readonly IDictionary<long, RecipeDef> AddedRecipeDefs = new Dictionary<long, RecipeDef>();
 
-        private ArchipelagoSession Session { get => MultiWorldService.Instance.Session; }
+        private ArchipelagoSession Session => Main.Instance.Session;
 
         private bool isArchipelagoLoaded = false;
 
@@ -66,6 +64,8 @@ namespace RimworldArchipelago
             try
             {
                 System.Diagnostics.Debug.Assert(Session != null);
+                if (isArchipelagoLoaded)
+                    Unload();
 
                 Log.Message("Loading players...");
                 Players = Session.Players.AllPlayers.ToDictionary(x => x.Slot);
@@ -93,6 +93,27 @@ namespace RimworldArchipelago
         }
 
         /// <summary>
+        /// Only really needed if we want to connect to another archipelago session with different settings without just reloading the whole game
+        /// </summary>
+        public void Unload()
+        {
+            throw new NotImplementedException();
+            // unload stuff added to rimworld
+            // TODO this doesn't work anyway
+            DefDatabase<ResearchProjectDef>.Clear();
+            DefDatabase<ResearchProjectDef>.ClearCachedData();
+
+            // Empty out our data mappings and stuff
+            ResearchLocations.Clear();
+            CraftLocations.Clear();
+            PurchaseLocations.Clear();
+            Players.Clear();
+            SlotData.Clear();
+            ArchipelagoWorldComp.Reset();
+            isArchipelagoLoaded = false;
+        }
+
+        /// <summary>
         /// Build the mappings from numerical Archipelago ids to rimworld string def names. 
         /// This will help us when receiving items from Archipelago
         /// </summary>
@@ -101,7 +122,7 @@ namespace RimworldArchipelago
             var defNameMap = JsonConvert.DeserializeObject<Dictionary<long, Dictionary<string, string>>>(SlotData["item_id_to_rimworld_def"].ToString());
             foreach (var kvp in defNameMap)
             {
-                MultiWorldService.Instance.ArchipeligoItemIdToRimWorldDef[kvp.Key] = new Main.RimWorldDef()
+                Main.Instance.ArchipeligoItemIdToRimWorldDef[kvp.Key] = new Main.RimWorldDef()
                 {
                     DefName = kvp.Value["defName"],
                     DefType = kvp.Value["defType"]
@@ -114,6 +135,8 @@ namespace RimworldArchipelago
         /// </summary>
         private async Task LoadLocationDictionary()
         {
+            var hints = await Session.DataStorage.GetHintsAsync();
+
             var allLocations = Session.Locations.AllLocations.ToArray();
             var items = (await Session.Locations.ScoutLocationsAsync(false, allLocations)).Locations;
 
@@ -139,15 +162,15 @@ namespace RimworldArchipelago
                             Player = item.Player,
                             ExtendedLabel = $"{Players[item.Player].Name}'s {itemName}"
                         };
-                        if (locationId.IsResearchLocation())
+                        if (Main.IsResearchLocation(locationId))
                         {
                             ResearchLocations[locationId] = location;
                         }
-                        else if (locationId.IsCraftLocation())
+                        else if (Main.IsCraftLocation(locationId))
                         {
                             CraftLocations[locationId] = location;
                         }
-                        else if (locationId.IsPurchaseLocation())
+                        else if (Main.IsPurchaseLocation(locationId))
                         {
                             PurchaseLocations[locationId] = location;
                         }
@@ -193,7 +216,7 @@ namespace RimworldArchipelago
                     //requiredResearchFacilities = Thing
                 };
                 AddedResearchDefs.Add(kvp.Key, def);
-                MultiWorldService.Instance.DefNameToArchipelagoId[def.defName] = kvp.Key;
+                Main.Instance.DefNameToArchipelagoId[def.defName] = kvp.Key;
             }
             foreach (var kvp in AddedResearchDefs)
             {
@@ -209,7 +232,7 @@ namespace RimworldArchipelago
         private void DisableNormalResearch()
         {
             // use our def map, not all ResearchProjectDefs, in case there are researches that we will not get from Archipelago e.g. from mods
-            var researchDefNames = MultiWorldService.Instance.ArchipeligoItemIdToRimWorldDef.Values.Where(def => def.DefType == "ResearchProjectDef").Select(def => def.DefName);
+            var researchDefNames = Main.Instance.ArchipeligoItemIdToRimWorldDef.Values.Where(def => def.DefType == "ResearchProjectDef").Select(def => def.DefName);
             foreach (var researchName in researchDefNames)
             {
                 var def = DefDatabase<ResearchProjectDef>.GetNamed(researchName);
@@ -313,7 +336,7 @@ namespace RimworldArchipelago
                     workTableSpeedStat= workTableSpeedStat,
                 };
                 AddedRecipeDefs.Add(kvp.Key, def);
-                MultiWorldService.Instance.DefNameToArchipelagoId[def.defName] = kvp.Key;
+                Main.Instance.DefNameToArchipelagoId[def.defName] = kvp.Key;
             }
             DefDatabase<RecipeDef>.Add(AddedRecipeDefs.Values);
         }

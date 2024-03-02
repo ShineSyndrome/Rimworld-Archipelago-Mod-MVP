@@ -2,7 +2,6 @@
 using RimWorld;
 using Verse;
 using RimworldArchipelago.Client;
-using RimworldArchipelago.Client.Services;
 
 namespace RimworldArchipelago.Patches
 {
@@ -21,7 +20,7 @@ namespace RimworldArchipelago.Patches
 
         public static void Postfix(ref ResearchProjectDef proj)
         {
-            if (MultiWorldService.Instance.DefNameToArchipelagoId.ContainsKey(proj.defName))
+            if (Main.Instance.DefNameToArchipelagoId.ContainsKey(proj.defName))
             {
                 Main.Instance.SendLocationCheck(proj.defName);
             }
