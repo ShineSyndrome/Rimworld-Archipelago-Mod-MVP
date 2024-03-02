@@ -12,7 +12,7 @@ foreach ($item in $delete) {
     }
 }
 
-if ($rw_test_mod_location)
+if ($rw_test_mod_assembly_dest)
 {
 	robocopy "../assemblies/" $rw_test_mod_assembly_dest /E
 }
