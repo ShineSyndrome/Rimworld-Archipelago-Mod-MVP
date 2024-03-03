@@ -96,6 +96,8 @@ namespace RimworldArchipelago.Client
             Log.Trace(JsonConvert.SerializeObject(loginSuccess));
 
             ArchipelagoLoader = new ArchipelagoLoader();
+            //Dirty but works.
+            //Concession for tricking a synchronous override to do async workloads.
             _ = ArchipelagoLoader.Load();
 
             return true;

@@ -21,7 +21,7 @@ namespace RimworldArchipelago.Client
 
         public static void ReceiveItem(long archipelagoItemId)
         {
-            bool readyToRecieve = Find.AnyPlayerHomeMap != null || comp != null;
+            bool readyToRecieve = Find.AnyPlayerHomeMap != null && comp != null;
 
             if (!readyToRecieve)
             {
