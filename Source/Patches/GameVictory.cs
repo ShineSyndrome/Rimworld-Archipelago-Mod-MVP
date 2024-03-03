@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using System.Collections;
-using Verse;
+using RimworldArchipelago.Client;
+
 
 namespace RimworldArchipelago.Patches
 {
@@ -10,7 +10,7 @@ namespace RimworldArchipelago.Patches
     {
         public static void Postfix()
         {
-            FileLog.Log("Endgame reached.");
+            Main.Instance.TriggerGoalComplete();
         }
     }
 }

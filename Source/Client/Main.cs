@@ -20,34 +20,30 @@ namespace RimworldArchipelago.Client
 
     public class Main : HugsLib.ModBase
     {
-        public override string ModIdentifier => "Archipelago";
+        internal static Main Instance { get; private set; }
+
+        public ArchipelagoSession Session { get => MultiWorldSessionManager.Session; }
+        public ArchipelagoLoader ArchipelagoLoader { get; private set; }
+
+        public string Address { get; private set; } = "127.0.0.1:38281";
+        public string PlayerSlot { get; private set; } = "Player";
+
+        public struct RimWorldDef { public string DefName; public string DefType; public int Quantity; }
+        public IDictionary<string, long> DefNameToArchipelagoId { get;  } = new ConcurrentDictionary<string, long>();
+        public IDictionary<long, RimWorldDef> ArchipeligoItemIdToRimWorldDef { get; } = new ConcurrentDictionary<long, RimWorldDef>();
+
+        public static bool IsResearchLocation(long id) => id >= 11_000 && id < 12_000;
+        public static bool IsCraftLocation(long id) => id >= 12_000 && id < 13_000;
+        public static bool IsPurchaseLocation(long id) => id >= 13_000 && id < 14_000;
 
         public Main()
         {
             Instance = this;
         }
 
-        internal static Main Instance { get; private set; }
-
-        public ModLogger Log => base.Logger;
-        public ArchipelagoSession Session { get => MultiWorldSessionManager.Session; }
-
-        public string Address { get; private set; } = "127.0.0.1:38281";
-        public string PlayerSlot { get; private set; } = "Player";
-
-        public ArchipelagoLoader ArchipelagoLoader { get; private set; }
-        public struct RimWorldDef { public string DefName; public string DefType; public int Quantity; }
-
-        public readonly IDictionary<string, long> DefNameToArchipelagoId = new ConcurrentDictionary<string, long>();
-        public readonly IDictionary<long, RimWorldDef> ArchipeligoItemIdToRimWorldDef = new ConcurrentDictionary<long, RimWorldDef>();
-
-        public static bool IsResearchLocation(long id) => id >= 11_000 && id < 12_000;
-        public static bool IsCraftLocation(long id) => id >= 12_000 && id < 13_000;
-        public static bool IsPurchaseLocation(long id) => id >= 13_000 && id < 14_000;
-
         public bool Connect(string address, string playerSlot, string password = null)
         {
-            Log.Message("Connecting to Archipelago...");
+            Logger.Message("Connecting to Archipelago...");
             // store address & player slot even if invalid if there is no session yet
             if (Session == null)
             {
@@ -59,7 +55,7 @@ namespace RimworldArchipelago.Client
 
             if (result.Successful)
             {
-                Log.Message("Successfully Connected.");
+                Logger.Message("Successfully Connected.");
                 ArchipelagoLoader = new ArchipelagoLoader();
                 
                 //Dirty but works.
@@ -80,7 +76,7 @@ namespace RimworldArchipelago.Client
                 {
                     errorMessage += $"\n    {error}";
                 }
-                Log.Error(errorMessage);
+                Logger.Error(errorMessage);
 
                 return false;
             }
@@ -88,25 +84,14 @@ namespace RimworldArchipelago.Client
 
         public void SendLocationCheck(string defName)
         {
-            Log.Message($"Sending completed location {defName} to Archipelago");
+            Logger.Message($"Sending completed location {defName} to Archipelago");
             Session.Locations.CompleteLocationChecks(DefNameToArchipelagoId[defName]);
-            DisableLocation(defName);
         }
 
-        public void DisableLocation(string defName)
+        public void TriggerGoalComplete()
         {
-            var id = DefNameToArchipelagoId[defName];
-            if (IsResearchLocation(id))
-            {
-                var def = DefDatabase<ResearchProjectDef>.GetNamed(defName);
-                //TODO? probably only here because research finished anyway
-            }
-            else if (IsCraftLocation(id))
-            {
-                var def = DefDatabase<RecipeDef>.GetNamed(defName);
-                def.recipeUsers.RemoveAt(0); //TODO test that this removes recipe
-            }
+            Logger.Message("Goal complete!");
+            MultiWorldSessionManager.SendGoalCompletePacket();
         }
-
     }
 }

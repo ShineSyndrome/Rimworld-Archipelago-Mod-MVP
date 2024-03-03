@@ -20,7 +20,6 @@ namespace RimworldArchipelago
     /// </summary>
     public class ArchipelagoLoader
     {
-        private static ModLogger Log => Main.Instance.Log;
         public class Location
         {
             public string Name;
@@ -51,8 +50,6 @@ namespace RimworldArchipelago
 
         private ArchipelagoSession Session => Main.Instance.Session;
 
-        private bool isArchipelagoLoaded = false;
-
         public ArchipelagoLoader()
         {
 
@@ -60,57 +57,24 @@ namespace RimworldArchipelago
 
         public async Task Load()
         {
-            Log.Message("ArchipelagoLoader started...");
             try
             {
-                System.Diagnostics.Debug.Assert(Session != null);
-                if (isArchipelagoLoaded)
-                    Unload();
-
-                Log.Message("Loading players...");
                 Players = Session.Players.AllPlayers.ToDictionary(x => x.Slot);
                 CurrentPlayerId = Players.First(kvp => kvp.Value.Name == Main.Instance.PlayerSlot).Key;
 
-                Log.Message("Loading Slot Data...");
+
                 SlotData = await Session.DataStorage.GetSlotDataAsync(CurrentPlayerId);
-                Log.Message("Building Archipelago item Id to RimWorld defName map...");
                 LoadRimworldDefMaps();
-                Log.Message("Building Archipelago location map...");
                 await LoadLocationDictionary();
-                Log.Message("Creating research Defs for Archipelago locations...");
                 LoadResearchDefs();
-                Log.Message("Creating crafting recipes Defs for Archipelago locations...");
+
                 LoadCraftDefs();
-                Log.Message("!!! TO DO !!! Create merchant trades for Archipelago locations...");
-
-                Log.Message("Setting up Archipelago session events...");
                 AddSessionHooks();
-
-                Log.Message("Archipelago loader finished!");
-                isArchipelagoLoaded = true;
             }
-            catch (Exception ex) { Log.Error(ex.Message + "\n" + ex.StackTrace); }
-        }
-
-        /// <summary>
-        /// Only really needed if we want to connect to another archipelago session with different settings without just reloading the whole game
-        /// </summary>
-        public void Unload()
-        {
-            throw new NotImplementedException();
-            // unload stuff added to rimworld
-            // TODO this doesn't work anyway
-            DefDatabase<ResearchProjectDef>.Clear();
-            DefDatabase<ResearchProjectDef>.ClearCachedData();
-
-            // Empty out our data mappings and stuff
-            ResearchLocations.Clear();
-            CraftLocations.Clear();
-            PurchaseLocations.Clear();
-            Players.Clear();
-            SlotData.Clear();
-            ArchipelagoWorldComp.Reset();
-            isArchipelagoLoaded = false;
+            catch (Exception ex) 
+            { 
+                Log.Error(ex.Message + "\n" + ex.StackTrace); 
+            }
         }
 
         /// <summary>
@@ -181,10 +145,6 @@ namespace RimworldArchipelago
                     }
                     catch (Exception ex) { Log.Error(ex.Message + "\n" + ex.StackTrace); }
                 });
-
-            Log.Trace(" Research Locations: " + JsonConvert.SerializeObject(ResearchLocations));
-            Log.Trace(" Craft Locations: " + JsonConvert.SerializeObject(CraftLocations));
-            Log.Trace(" Purchase Locations: " + JsonConvert.SerializeObject(PurchaseLocations));
         }
 
         /// <summary>
@@ -198,7 +158,6 @@ namespace RimworldArchipelago
             // get archipelago research tab
             var tab = DefDatabase<ResearchTabDef>.GetNamed("AD_Archipelago");
             var researchesBefore = DefDatabase<ResearchProjectDef>.DefCount;
-            Log.Trace($"number of researches before: {researchesBefore}");
             var techTree = JsonConvert.DeserializeObject<Dictionary<long, LocationResearchMetaData>>(SlotData["techTree"].ToString());
 
             foreach (var kvp in techTree)
@@ -225,7 +184,6 @@ namespace RimworldArchipelago
 
             DefDatabase<ResearchProjectDef>.Add(AddedResearchDefs.Values);
             var researchesAfter = DefDatabase<ResearchProjectDef>.DefCount;
-            Log.Trace($"number of researches after: {researchesAfter}");
             ResearchProjectDef.GenerateNonOverlappingCoordinates();
         }
 

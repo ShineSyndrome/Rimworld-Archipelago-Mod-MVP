@@ -14,7 +14,6 @@ namespace RimworldArchipelago.Client
 {
     public static class ArchipelagoWorldComp
     {
-        private static ModLogger Log => Main.Instance.Log;
         internal static HashSet<long> ItemsAwaitingReceipt = new HashSet<long>();
 
         private static ArchipelagoWorldData comp => Find.World?.GetComponent<ArchipelagoWorldData>();
@@ -43,8 +42,6 @@ namespace RimworldArchipelago.Client
 
     public class ArchipelagoWorldData : RimWorld.Planet.WorldComponent
     {
-        private static ModLogger Log => Main.Instance.Log;
-
         public HashSet<long> ReceivedItems = new HashSet<long>();
 
         public ArchipelagoWorldData(World world) : base(world)

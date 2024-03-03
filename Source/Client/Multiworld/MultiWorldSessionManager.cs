@@ -1,5 +1,6 @@
 ﻿using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
+using Archipelago.MultiClient.Net.Packets;
 using Mono.Unix.Native;
 using Newtonsoft.Json;
 using System;
@@ -36,6 +37,16 @@ namespace RimworldArchipelago.Client.Multiworld
             {
                 return new LoginFailure(e.GetBaseException().Message);
             }
+        }
+
+        // Note, unlike other state consistency concerns there's probably little point
+        // in creating a system to handle if connection is dropped on win.
+        // Best for them to reload and trigger complete again.
+        public static void SendGoalCompletePacket()
+        {
+            var statusUpdatePacket = new StatusUpdatePacket();
+            statusUpdatePacket.Status = ArchipelagoClientState.ClientGoal;
+            Session.Socket.SendPacket(statusUpdatePacket);
         }
     }
 }

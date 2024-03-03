@@ -70,7 +70,6 @@ namespace RimworldArchipelago.Patches
 
     public class ArchipelagoOptionsMenu : Window
     {
-        private static ModLogger Log => Main.Instance.Log;
         public string address = Main.Instance.Address;
         public string slotName = Main.Instance.PlayerSlot;
         public string acceptBtnLabel;
