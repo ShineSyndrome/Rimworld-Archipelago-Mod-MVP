@@ -4,6 +4,7 @@ using HarmonyLib;
 using HugsLib;
 using HugsLib.Utils;
 using Newtonsoft.Json;
+using RimworldArchipelago.Client.Multiworld;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace RimworldArchipelago.Client
         internal static Main Instance { get; private set; }
 
         public ModLogger Log => base.Logger;
-        public ArchipelagoSession Session;
+        public ArchipelagoSession Session { get => MultiWorldSessionManager.Session; }
 
         public string Address { get; private set; } = "127.0.0.1:38281";
         public string PlayerSlot { get; private set; } = "Player";
@@ -53,26 +54,21 @@ namespace RimworldArchipelago.Client
                 Address = address;
                 PlayerSlot = playerSlot;
             }
-            ArchipelagoSession newSession;
-            if (address.Contains(':'))
+
+            LoginResult result = MultiWorldSessionManager.Connect(address, playerSlot, password);
+
+            if (result.Successful)
             {
-                newSession = ArchipelagoSessionFactory.CreateSession(new Uri($"ws://{address}"));
+                Log.Message("Successfully Connected.");
+                ArchipelagoLoader = new ArchipelagoLoader();
+                
+                //Dirty but works.
+                //Concession for tricking a synchronous override to do async workloads.
+                _ = ArchipelagoLoader.Load();
+
+                return true;
             }
             else
-                newSession = ArchipelagoSessionFactory.CreateSession(address);
-
-            LoginResult result;
-            try
-            {
-                result = newSession.TryConnectAndLogin("RimWorld", playerSlot, ItemsHandlingFlags.AllItems, password: password);
-
-            }
-            catch (Exception e)
-            {
-                result = new LoginFailure(e.GetBaseException().Message);
-            }
-
-            if (!result.Successful)
             {
                 LoginFailure failure = (LoginFailure)result;
                 string errorMessage = $"Failed to Connect to {address} as {playerSlot}:";
@@ -85,22 +81,9 @@ namespace RimworldArchipelago.Client
                     errorMessage += $"\n    {error}";
                 }
                 Log.Error(errorMessage);
+
                 return false;
             }
-            Address = address;
-            PlayerSlot = playerSlot;
-            Session = newSession;
-            Log.Message("Successfully Connected.");
-            var loginSuccess = (LoginSuccessful)result;
-            Log.Trace($"{loginSuccess}");
-            Log.Trace(JsonConvert.SerializeObject(loginSuccess));
-
-            ArchipelagoLoader = new ArchipelagoLoader();
-            //Dirty but works.
-            //Concession for tricking a synchronous override to do async workloads.
-            _ = ArchipelagoLoader.Load();
-
-            return true;
         }
 
         public void SendLocationCheck(string defName)
