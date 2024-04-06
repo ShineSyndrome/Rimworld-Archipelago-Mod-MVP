@@ -40,8 +40,7 @@ namespace RimworldArchipelago
         public IDictionary<int, PlayerInfo> Players { get; private set; }
 
         public readonly IDictionary<long, Location> ResearchLocations = new ConcurrentDictionary<long, Location>();
-        public readonly IDictionary<long, Location> CraftLocations = new ConcurrentDictionary<long, Location>();
-        public readonly IDictionary<long, Location> PurchaseLocations = new ConcurrentDictionary<long, Location>();
+
         public int CurrentPlayerId;
         private IDictionary<string, object> SlotData { get; set; }
 
@@ -62,13 +61,11 @@ namespace RimworldArchipelago
                 Players = Session.Players.AllPlayers.ToDictionary(x => x.Slot);
                 CurrentPlayerId = Players.First(kvp => kvp.Value.Name == Main.Instance.PlayerSlot).Key;
 
-
                 SlotData = await Session.DataStorage.GetSlotDataAsync(CurrentPlayerId);
                 LoadRimworldDefMaps();
                 await LoadLocationDictionary();
                 LoadResearchDefs();
 
-                LoadCraftDefs();
                 AddSessionHooks();
             }
             catch (Exception ex) 
@@ -130,14 +127,6 @@ namespace RimworldArchipelago
                         {
                             ResearchLocations[locationId] = location;
                         }
-                        else if (Main.IsCraftLocation(locationId))
-                        {
-                            CraftLocations[locationId] = location;
-                        }
-                        else if (Main.IsPurchaseLocation(locationId))
-                        {
-                            PurchaseLocations[locationId] = location;
-                        }
                         else
                         {
                             Log.Error($"Unknown location id: {locationId}");
@@ -146,6 +135,20 @@ namespace RimworldArchipelago
                     catch (Exception ex) { Log.Error(ex.Message + "\n" + ex.StackTrace); }
                 });
         }
+
+        //todo: tech print techs need count ripping out
+        //Remove hidden requirements on all research
+        //discovered letter shit
+        //if this doesn't work we go back to creating our own ResearchDefs
+        // Ship research uses a parent name tag, because of course it fucking does
+
+        //mechinator requirements are interesting? leave them in?
+
+        //Remember that we need both hidden real technology with stripped requirements, 
+        //and fake technology that will link to the real technology
+
+        //remember we need to send out our own checks!
+
 
         /// <summary>
         /// seems clunky, but here we combine the research segment of Locations with the research-only metadata,
@@ -172,6 +175,7 @@ namespace RimworldArchipelago
                     tab = tab,
                     researchViewX = kvp.Value.x,
                     researchViewY = kvp.Value.y,
+
                     //requiredResearchFacilities = Thing
                 };
                 AddedResearchDefs.Add(kvp.Key, def);
@@ -203,102 +207,14 @@ namespace RimworldArchipelago
                     // Removing all research prequisites stops
                     // later technoligies back-filling earlier requirements.
                     def.prerequisites = new List<ResearchProjectDef>();
+                    def.hiddenPrerequisites = new List<ResearchProjectDef>();
+                    def.techprintCount = 0;
+                    def.techprintCommonality = 0;
                     // Hide technologies on main tab to stop vanilla research.
                     def.tab = null;
                 }
             }
         }
-
-        private void LoadCraftDefs()
-        {
-            //get new archipelago crafting table and other constant recipe properties
-            var recipeUsers = new List<ThingDef>() { DefDatabase<ThingDef>.GetNamed("AD_ArchipelagoBench") };
-            var workSkill = DefDatabase<SkillDef>.GetNamed("Crafting");
-            var effectWorking = DefDatabase<EffecterDef>.GetNamed("Cook");
-            var soundWorking = DefDatabase<SoundDef>.GetNamed("Recipe_Machining");
-            var workSpeedStat = DefDatabase<StatDef>.GetNamed("GeneralLaborSpeed");
-            var workTableEfficiencyStat = DefDatabase<StatDef>.GetNamed("WorkTableEfficiencyFactor");
-            var workTableSpeedStat = DefDatabase<StatDef>.GetNamed("WorkTableWorkSpeedFactor");
-
-            /*
-             * Log.Message(string.Join(", " , DefDatabase<ThingCategoryDef>.AllDefsListForReading.Select(x => x.defName).ToArray()));
-             * Root, Foods, FoodMeals, FoodRaw, MeatRaw, PlantFoodRaw, AnimalProductRaw, EggsUnfertilized, EggsFertilized, Manufactured,
-             * Textiles, Leathers, Wools, Medicine, Drugs, MortarShells, ResourcesRaw, PlantMatter, StoneBlocks, Items, Unfinished, Artifacts,
-             * InertRelics, Neurotrainers, NeurotrainersPsycast, NeurotrainersSkill, Techprints, BodyParts, BodyPartsNatural, BodyPartsSimple,
-             * BodyPartsProsthetic, BodyPartsBionic, BodyPartsUltra, BodyPartsArchotech, BodyPartsMechtech, ItemsMisc, Weapons, WeaponsMelee,
-             * WeaponsMeleeBladelink, WeaponsRanged, Grenades, Apparel, Headgear, ApparelArmor, ArmorHeadgear, ApparelUtility, ApparelNoble,
-             * HeadgearNoble, ApparelMisc, Buildings, BuildingsArt, BuildingsProduction, BuildingsFurniture, BuildingsPower, BuildingsSecurity,
-             * BuildingsMisc, BuildingsJoy, BuildingsTemperature, BuildingsSpecial, Chunks, StoneChunks, Animals, Plants, Stumps, Corpses,
-             * CorpsesHumanlike, CorpsesAnimal, CorpsesInsect, CorpsesMechanoid
-             */
-
-            Func<string, ThingFilter> makeFilter = (string s) =>
-            {
-                var category = DefDatabase<ThingCategoryDef>.GetNamed(s);
-                var output = new ThingFilter()
-                {
-                    //DisplayRootCategory = category.treeNode,
-                };
-                output.SetAllow(category, true);
-                output.ResolveReferences();
-                output.RecalculateDisplayRootCategory();
-                //output.customSummary = category.ToString();
-                //output.customSummary = $"{category.ToString()}: {output.Summary}";
-                return output;
-            };
-
-            var leathersFilter = makeFilter("Leathers");
-            var textilesFilter = makeFilter("Textiles");
-            var woolsFilter = makeFilter("Textiles");
-            var stoneBlocksFilter = makeFilter("StoneBlocks");
-            var foodRawFilter = makeFilter("FoodRaw");
-            var filters = new List<ThingFilter>() { leathersFilter, textilesFilter, woolsFilter, stoneBlocksFilter, foodRawFilter };
-
-            Func<ThingFilter, float, IngredientCount> makeIngredientCount = (ThingFilter filter, float count) =>
-            {
-                var output = new IngredientCount()
-                {
-                    filter = filter,
-                };
-                output.SetBaseCount(count);
-                return output;
-            };
-
-            foreach (var kvp in CraftLocations)
-            {
-
-                // TODO get ingredients from archipelago
-                var filter = Verse.Rand.Element(leathersFilter, textilesFilter, woolsFilter, stoneBlocksFilter, foodRawFilter);
-                var def = new RecipeDef()
-                {
-                    defName = $"AP_{kvp.Key}",
-                    label = kvp.Value.ExtendedLabel,
-                    description = kvp.Value.ExtendedLabel + $" (AP_{kvp.Key})",
-                    recipeUsers = recipeUsers,
-                    workerClass = typeof(ArchipelagoRecipeWorker),
-                    workSkill = workSkill,
-                    workAmount = 1000, //TODO get workAmount from archipelago
-                    workSpeedStat = workSpeedStat,
-                    allowMixingIngredients = true,
-                    effectWorking = effectWorking,
-                    jobString = $"Making {kvp.Value.ExtendedLabel}.",
-                    soundWorking = soundWorking,
-                    ingredients = new List<IngredientCount>()
-                    {
-                        makeIngredientCount(filter, 2)
-                    },
-                    fixedIngredientFilter = filter,
-                    defaultIngredientFilter = filter,
-                    targetCountAdjustment = 1,
-                    workTableEfficiencyStat = workTableEfficiencyStat,
-                    workTableSpeedStat= workTableSpeedStat,
-                };
-                AddedRecipeDefs.Add(kvp.Key, def);
-                Main.Instance.DefNameToArchipelagoId[def.defName] = kvp.Key;
-            }
-            DefDatabase<RecipeDef>.Add(AddedRecipeDefs.Values);
-        }
-
 
         private void AddSessionHooks()
         {

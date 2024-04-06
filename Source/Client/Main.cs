@@ -33,8 +33,6 @@ namespace RimworldArchipelago.Client
         public IDictionary<long, RimWorldDef> ArchipeligoItemIdToRimWorldDef { get; } = new ConcurrentDictionary<long, RimWorldDef>();
 
         public static bool IsResearchLocation(long id) => id >= 11_000 && id < 12_000;
-        public static bool IsCraftLocation(long id) => id >= 12_000 && id < 13_000;
-        public static bool IsPurchaseLocation(long id) => id >= 13_000 && id < 14_000;
 
         public Main()
         {
