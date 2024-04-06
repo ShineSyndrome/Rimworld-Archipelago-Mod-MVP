@@ -34,8 +34,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Client\ArchipelagoLoader.cs" />
-    <Compile Include="Client\ArchipelagoRecipeWorker.cs" />
     <Compile Include="Client\ArchipelagoWorldData.cs" />
+    <Compile Include="Client\Multiworld\MultiWorldSessionManager.cs" />
     <Compile Include="Patches\GameVictory.cs" />
     <Compile Include="Patches\FinishProject.cs" />
     <Compile Include="Client\Main.cs" />
@@ -56,6 +56,9 @@
     <PackageReference Include="UnlimitedHugs.Rimworld.HugsLib">
       <Version>10.0.1</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Client\Rimworld\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
