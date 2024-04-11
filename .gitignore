@@ -3,3 +3,4 @@
 /Source/bin
 /Assemblies/*
 /Source/RimworldArchipelago.csproj.user
+/Source/Patches/PatchTester.cs

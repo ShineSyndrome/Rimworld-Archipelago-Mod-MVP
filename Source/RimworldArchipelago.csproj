@@ -33,14 +33,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Client\ArchipelagoLoader.cs" />
-    <Compile Include="Client\ArchipelagoWorldData.cs" />
+    <Compile Include="Client\Data\ResearchLocations.cs" />
+    <Compile Include="Client\Multiworld\Location.cs" />
+    <Compile Include="Client\Rimworld\ArchipelagoLoader.cs" />
+    <Compile Include="Client\Rimworld\ArchipelagoGameComponent.cs" />
+    <Compile Include="Client\Rimworld\ArchipelagoWorldComponent.cs" />
     <Compile Include="Client\Multiworld\MultiWorldSessionManager.cs" />
+    <Compile Include="Client\Rimworld\ComponentStateManager.cs" />
+    <Compile Include="Client\Rimworld\DefManager.cs" />
     <Compile Include="Patches\GameVictory.cs" />
     <Compile Include="Patches\FinishProject.cs" />
     <Compile Include="Client\Main.cs" />
     <Compile Include="Client\UI\ArchipelagoAlert.cs" />
     <Compile Include="Patches\MainMenu.cs" />
+    <Compile Include="Patches\PatchTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,13 +63,10 @@
       <Version>10.0.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Client\Rimworld\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>powershell -NoProfile -ExecutionPolicy RemoteSigned -file $(ProjectDir)\post-build.ps1
-</PostBuildEvent>
+    <PostBuildEvent>powershell -NoProfile -ExecutionPolicy RemoteSigned -file $(ProjectDir)\post-build.ps1</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>del "$(TargetDir)*.*" /q</PreBuildEvent>

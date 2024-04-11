@@ -4,6 +4,7 @@ using HugsLib.Utils;
 using Newtonsoft.Json;
 using RimWorld;
 using RimworldArchipelago.Client;
+using RimworldArchipelago.Client.Rimworld;
 using System;
 using System.Collections;
 using System.Collections.Concurrent;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 using Verse;
 using Verse.Noise;
 
-namespace RimworldArchipelago
+namespace RimworldArchipelago.RimWorld
 {
     /// <summary>
     /// Loads the initial data for archipelago locations and items
@@ -47,94 +48,87 @@ namespace RimworldArchipelago
         public readonly IDictionary<long, ResearchProjectDef> AddedResearchDefs = new Dictionary<long, ResearchProjectDef>();
         public readonly IDictionary<long, RecipeDef> AddedRecipeDefs = new Dictionary<long, RecipeDef>();
 
-        private ArchipelagoSession Session => Main.Instance.Session;
+        //private ArchipelagoSession Session => Main.Instance.Session;
 
         public ArchipelagoLoader()
         {
 
         }
 
-        public async Task Load()
-        {
-            try
-            {
-                Players = Session.Players.AllPlayers.ToDictionary(x => x.Slot);
-                CurrentPlayerId = Players.First(kvp => kvp.Value.Name == Main.Instance.PlayerSlot).Key;
+        //public async Task Load()
+        //{
+        //    try
+        //    {
+        //        //LoadRimworldDefMaps();
+        //        //await LoadLocationDictionary();
+        //        LoadResearchDefs();
 
-                SlotData = await Session.DataStorage.GetSlotDataAsync(CurrentPlayerId);
-                LoadRimworldDefMaps();
-                await LoadLocationDictionary();
-                LoadResearchDefs();
-
-                AddSessionHooks();
-            }
-            catch (Exception ex) 
-            { 
-                Log.Error(ex.Message + "\n" + ex.StackTrace); 
-            }
-        }
+        //        AddSessionHooks();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex.Message + "\n" + ex.StackTrace);
+        //    }
+        //}
 
         /// <summary>
         /// Build the mappings from numerical Archipelago ids to rimworld string def names. 
         /// This will help us when receiving items from Archipelago
         /// </summary>
-        private void LoadRimworldDefMaps()
-        {
-            var defNameMap = JsonConvert.DeserializeObject<Dictionary<long, Dictionary<string, string>>>(SlotData["item_id_to_rimworld_def"].ToString());
-            foreach (var kvp in defNameMap)
-            {
-                Main.Instance.ArchipeligoItemIdToRimWorldDef[kvp.Key] = new Main.RimWorldDef()
-                {
-                    DefName = kvp.Value["defName"],
-                    DefType = kvp.Value["defType"]
-                };
-            }
-        }
+        //private void LoadRimworldDefMaps()
+        //{
+        //    var defNameMap = JsonConvert.DeserializeObject<Dictionary<long, Dictionary<string, string>>>(SlotData["item_id_to_rimworld_def"].ToString());
+        //    foreach (var kvp in defNameMap)
+        //    {
+        //        Main.Instance.ArchipeligoItemIdToRimWorldDef[kvp.Key] = new Main.RimWorldDef()
+        //        {
+        //            DefName = kvp.Value["defName"],
+        //            DefType = kvp.Value["defType"]
+        //        };
+        //    }
+        //}
 
         /// <summary>
         /// Fill the locations dictionary, which maps the Archipelago's numeric location ids to data we can use internally
         /// </summary>
-        private async Task LoadLocationDictionary()
-        {
-            var hints = await Session.DataStorage.GetHintsAsync();
-
-            var allLocations = Session.Locations.AllLocations.ToArray();
-            var items = (await Session.Locations.ScoutLocationsAsync(false, allLocations)).Locations;
-
-            // todo: parrallelism overkill, make it procedural.
-            Parallel.ForEach(
-                items,
-                new ParallelOptions
-                {
-                    MaxDegreeOfParallelism = Convert.ToInt32(Math.Ceiling((Environment.ProcessorCount * 0.75) * 2.0))
-                },
-                item =>
-                {
-                    try
-                    {
-                        var locationId = item.Location;
-                        var itemName = Session.Items.GetItemName(item.Item);
-                        var locationName = Session.Locations.GetLocationNameFromId(locationId);
-                        var location = new Location()
-                        {
-                            ItemId = item.Item,
-                            ItemName = itemName,
-                            Name = locationName,
-                            Player = item.Player,
-                            ExtendedLabel = $"{Players[item.Player].Name}'s {itemName}"
-                        };
-                        if (Main.IsResearchLocation(locationId))
-                        {
-                            ResearchLocations[locationId] = location;
-                        }
-                        else
-                        {
-                            Log.Error($"Unknown location id: {locationId}");
-                        }
-                    }
-                    catch (Exception ex) { Log.Error(ex.Message + "\n" + ex.StackTrace); }
-                });
-        }
+        //private async Task LoadLocationDictionary()
+        //{
+        //    var alllocations = session.locations.alllocations.toarray();
+        //    var items = (await session.locations.scoutlocationsasync(false, alllocations)).locations;
+        //    // todo: parrallelism overkill, make it procedural.
+        //    parallel.foreach (
+        //        items,
+        //        new paralleloptions
+        //        {
+        //            maxdegreeofparallelism = convert.toint32(math.ceiling((environment.processorcount * 0.75) * 2.0))
+        //        },
+        //        item =>
+        //        {
+        //            try
+        //            {
+        //                var locationid = item.location;
+        //                var itemname = session.items.getitemname(item.item);
+        //                var locationname = session.locations.getlocationnamefromid(locationid);
+        //                var location = new location()
+        //                {
+        //                    itemid = item.item,
+        //                    itemname = itemname,
+        //                    name = locationname,
+        //                    player = item.player,
+        //                    extendedlabel = $"{players[item.player].name}'s {itemname}"
+        //                };
+        //                if (main.isresearchlocation(locationid))
+        //                {
+        //                    researchlocations[locationid] = location;
+        //                }
+        //                else
+        //                {
+        //                    log.error($"unknown location id: {locationid}");
+        //                }
+        //            }
+        //            catch (exception ex) { log.error(ex.message + "\n" + ex.stacktrace); }
+        //        });
+        //}
 
         //todo: tech print techs need count ripping out
         //Remove hidden requirements on all research
@@ -161,6 +155,7 @@ namespace RimworldArchipelago
             // get archipelago research tab
             var tab = DefDatabase<ResearchTabDef>.GetNamed("AD_Archipelago");
             var researchesBefore = DefDatabase<ResearchProjectDef>.DefCount;
+            var scenarioDef = DefDatabase<ScenarioDef>.AllDefs;
             var techTree = JsonConvert.DeserializeObject<Dictionary<long, LocationResearchMetaData>>(SlotData["techTree"].ToString());
 
             foreach (var kvp in techTree)
@@ -218,23 +213,23 @@ namespace RimworldArchipelago
 
         private void AddSessionHooks()
         {
-            Session.Items.ItemReceived += (receivedItemsHelper) =>
-            {
-                var itemReceivedName = receivedItemsHelper.PeekItemName();
-                Log.Message($"Received Item: {itemReceivedName}");
-                var networkItem = receivedItemsHelper.DequeueItem();
-                ArchipelagoWorldComp.ReceiveItem(networkItem.Item);
-            };
+            //Session.Items.ItemReceived += (receivedItemsHelper) =>
+            //{
+            //    var itemReceivedName = receivedItemsHelper.PeekItemName();
+            //    Log.Message($"Received Item: {itemReceivedName}");
+            //    var networkItem = receivedItemsHelper.DequeueItem();
+            //    ComponentStateManager.ReceiveItem(networkItem.Item);
+            //};
 
-            Session.MessageLog.OnMessageReceived += (message) =>
-            {
-                foreach (var part in message.Parts)
-                {
-                    //Find.LetterStack.ReceiveLetter(part.Text, part.Text, LetterDefOf.NeutralEvent);
-                    Messages.Message(part.Text, MessageTypeDefOf.SilentInput, false);
-                    Log.Message(part.Text);
-                }
-            };
+            //Session.MessageLog.OnMessageReceived += (message) =>
+            //{
+            //    foreach (var part in message.Parts)
+            //    {
+            //        Find.LetterStack.ReceiveLetter(part.Text, part.Text, LetterDefOf.NeutralEvent);
+            //        Messages.Message(part.Text, MessageTypeDefOf.SilentInput, false);
+            //        Log.Message(part.Text);
+            //    }
+            //};
         }
     }
 }

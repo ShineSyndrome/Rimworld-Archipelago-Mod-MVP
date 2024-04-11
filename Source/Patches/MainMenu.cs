@@ -49,7 +49,7 @@ namespace RimworldArchipelago.Patches
                 return;
             }
 
-            if (Main.Instance.Session == null)
+            if (!Main.Instance.Connected)
             {
                 optList.Insert(newColony + 1, new ListableOption("Archipelago", () =>
                 {
@@ -60,13 +60,13 @@ namespace RimworldArchipelago.Patches
             {
                 optList.Insert(newColony + 1, new ListableOption("Connected!", () =>
                 {
-                    Messages.Message("RimWorld can't unload Archipelago's changes.\nRestart RimWorld to connect to a different Archipelago server or player slot.",
-                        MessageTypeDefOf.SilentInput, false);
+                    Find.WindowStack.Add(new ArchipelagoOptionsMenu());
+                    //Messages.Message("RimWorld can't unload Archipelago's changes.\nRestart RimWorld to connect to a different Archipelago server or player slot.",
+                    //    MessageTypeDefOf.SilentInput, false);
                 }));
             }   
         }
     }
-
 
     public class ArchipelagoOptionsMenu : Window
     {

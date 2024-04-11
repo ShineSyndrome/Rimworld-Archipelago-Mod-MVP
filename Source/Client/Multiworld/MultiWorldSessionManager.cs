@@ -1,23 +1,23 @@
 ﻿using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
+using Archipelago.MultiClient.Net.Helpers;
+using Archipelago.MultiClient.Net.Models;
 using Archipelago.MultiClient.Net.Packets;
-using Mono.Unix.Native;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Text;
 using System.Threading.Tasks;
-using Verse;
 
 namespace RimworldArchipelago.Client.Multiworld
 {
-    public static class MultiWorldSessionManager
+    public class MultiWorldSessionManager
     {
-        public static ArchipelagoSession Session { get; private set; }
+        public ArchipelagoSession Session { get; private set; }
+        public int CurrentPlayerId { get; private set; }
+        public Dictionary<string, object> SlotData { get; private set; }
+        public IEnumerable<Location> AllLocations { get; private set; }
 
-        public static LoginResult Connect(string address, string playerSlot, string password)
+        public LoginResult Connect(string address, string playerSlot, string password)
         {
             if (address.Contains(':'))
             {
@@ -28,21 +28,33 @@ namespace RimworldArchipelago.Client.Multiworld
                 Session = ArchipelagoSessionFactory.CreateSession(address);
             }
 
+            LoginResult loginResult = null;
+
             try
             {
-                return Session.TryConnectAndLogin("RimWorld", playerSlot, ItemsHandlingFlags.AllItems, password: password);
-
+                loginResult = Session.TryConnectAndLogin("RimWorld", playerSlot, ItemsHandlingFlags.AllItems, password: password);
             }
             catch (Exception e)
             {
                 return new LoginFailure(e.GetBaseException().Message);
             }
+
+            CurrentPlayerId = Session.Players.AllPlayers.Single(x => x.Name == playerSlot).Slot;
+            SlotData = Session.DataStorage.GetSlotData(CurrentPlayerId);
+
+            var allLocationIds = Session.Locations.AllLocations.ToArray();
+            Task.Run(async () => await InitialLocationsScout(allLocationIds));
+
+            return loginResult;
         }
 
-        // Note, unlike other state consistency concerns there's probably little point
-        // in creating a system to handle if connection is dropped on win.
-        // Best for them to reload and trigger complete again.
-        public static void SendGoalCompletePacket()
+        private async Task InitialLocationsScout(long[] allLocationIds)
+        {
+            AllLocations = (await Session.Locations.ScoutLocationsAsync(false, allLocationIds)).Locations
+                     .Select(l => new Location { NetworkItem = l, SelfItem = l.Player == CurrentPlayerId });
+        }
+
+        public void SendGoalCompletePacket()
         {
             var statusUpdatePacket = new StatusUpdatePacket();
             statusUpdatePacket.Status = ArchipelagoClientState.ClientGoal;

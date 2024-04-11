@@ -2,6 +2,7 @@
 using RimWorld;
 using Verse;
 using RimworldArchipelago.Client;
+using RimWorld.Planet;
 
 namespace RimworldArchipelago.Patches
 {
