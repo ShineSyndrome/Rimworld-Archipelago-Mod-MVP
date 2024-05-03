@@ -17,7 +17,7 @@ namespace RimworldArchipelago.Client.Rimworld
             base.StartedNewGame();
 
             if (Main.Connected)
-            { 
+            {
                 Main.UpdatePlayerStamp();
                 Main.LoadMultiworld();
             }
@@ -30,6 +30,13 @@ namespace RimworldArchipelago.Client.Rimworld
                 if (!Main.Connected)
                 {
                     throw new InvalidOperationException("Loaded MW game before connecting! Do not save. Return to the main menu, and connect before loading the game again.");
+                }
+
+                var LoadedGameSeed = Main.GetMWSeedStamp;
+
+                if (LoadedGameSeed != Main.Session.RoomState.Seed)
+                {
+                    throw new InvalidOperationException("Loaded multiworld save belonging to a different MW seed than current connection! Quit without saving, and try again.");
                 }
 
                 if (Main.GetPlayerStamp != Main.PlayerSlot)

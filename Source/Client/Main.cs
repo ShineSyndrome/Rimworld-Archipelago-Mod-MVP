@@ -6,6 +6,7 @@ using RimworldArchipelago.RimWorld;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace RimworldArchipelago.Client
@@ -18,13 +19,14 @@ namespace RimworldArchipelago.Client
 
         internal MultiWorldSessionManager MultiWorldSessionManager { get; } = new MultiWorldSessionManager();
         internal ComponentStateManager ComponentStateManager { get; } = new ComponentStateManager();
+        internal DefManager DefManager { get; } =  new DefManager();
 
         internal bool Connected { get { return MultiWorldSessionManager.Session?.Socket?.Connected ?? false; } }
-        // we might need this for stopping bad loads
-        //public bool InvalidGame = false;
+        // todo: allow users to connect multiple times.
+        // eg- preserve original defs.
+
 
         public ArchipelagoSession Session { get => MultiWorldSessionManager.Session; }
-
 
         public string Address { get; private set; } = "127.0.0.1:38281";
         public string PlayerSlot { get; private set; } = "Player";
@@ -43,10 +45,11 @@ namespace RimworldArchipelago.Client
         }
 
         public string GetPlayerStamp => ComponentStateManager.GetMultiworldMarker();
+        public string GetMWSeedStamp => ComponentStateManager.GetMWSeed();
 
         public void UpdatePlayerStamp()
         {
-            ComponentStateManager.UpdateMultiworldMarker(PlayerSlot);
+            ComponentStateManager.UpdateMultiworldMarker(PlayerSlot, MultiWorldSessionManager.Seed);
         }
 
         public void LogMessage(string message, bool error = false)
@@ -95,12 +98,11 @@ namespace RimworldArchipelago.Client
 
         public void LoadMultiworld()
         {
-            //grabbing locations
-            //grabbing items
+            var researchLocations = MultiWorldSessionManager.AllLocations
+                .Where(l => l.IsResearchLocation);
             //setting up research according to locations and items
+            this.DefManager.LoadResearchDefs(researchLocations);
             //register hooks
-
-            Console.WriteLine("test");    
         }
 
         public void SendLocationCheck(string defName)

@@ -12,9 +12,15 @@ namespace RimworldArchipelago.Client.Rimworld
             return ArchiWorldComponent.multiWorldPlayerStamp;
         }
 
-        public void UpdateMultiworldMarker(string player)
+        public string GetMWSeed()
+        {
+            return ArchiWorldComponent.mwSeed;
+        }
+
+        public void UpdateMultiworldMarker(string player, string seed)
         {
             ArchiWorldComponent.multiWorldPlayerStamp = player;
+            ArchiWorldComponent.mwSeed = seed;
         }
         //public void ReceiveItem(long archipelagoItemId)
         //{

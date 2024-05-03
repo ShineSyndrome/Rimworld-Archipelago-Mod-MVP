@@ -16,6 +16,8 @@ namespace RimworldArchipelago.Client.Multiworld
         public int CurrentPlayerId { get; private set; }
         public Dictionary<string, object> SlotData { get; private set; }
         public IEnumerable<Location> AllLocations { get; private set; }
+        public Dictionary<long, string> Players { get; private set; }
+        public string Seed { get; private set; }
 
         public LoginResult Connect(string address, string playerSlot, string password)
         {
@@ -45,13 +47,30 @@ namespace RimworldArchipelago.Client.Multiworld
             var allLocationIds = Session.Locations.AllLocations.ToArray();
             Task.Run(async () => await InitialLocationsScout(allLocationIds));
 
+            Seed = Session.RoomState.Seed;
+
             return loginResult;
+        }
+
+        public int GetSlotDataInteger(string key)
+        {
+            if (SlotData.TryGetValue(key, out var slotValue))
+            {
+                return Convert.ToInt32(slotValue);
+            }
+
+            throw new ArgumentException($"Key not found in slot data {key}");
         }
 
         private async Task InitialLocationsScout(long[] allLocationIds)
         {
             AllLocations = (await Session.Locations.ScoutLocationsAsync(false, allLocationIds)).Locations
-                     .Select(l => new Location { NetworkItem = l, SelfItem = l.Player == CurrentPlayerId });
+                     .Select(l => new Location { 
+                         NetworkItem = l, 
+                         SelfItem = l.Player == CurrentPlayerId, 
+                         ItemName = Session.Items.GetItemName(l.Item),
+                         PlayerAlias = Session.Players.GetPlayerAlias(l.Player)
+                     });
         }
 
         public void SendGoalCompletePacket()

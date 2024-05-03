@@ -12,6 +12,7 @@ namespace RimworldArchipelago.Client.Rimworld
         //Used to mark saves as belonging to a MW Rando
         //and stop people from breaking their vanilla game saves
         public string multiWorldPlayerStamp;
+        public string mwSeed;
 
         public List<long> ReceivedItems = new List<long>();
 
@@ -25,6 +26,7 @@ namespace RimworldArchipelago.Client.Rimworld
             base.ExposeData();
             Scribe_Collections.Look(ref ReceivedItems, nameof(ReceivedItems), LookMode.Value);
             Scribe_Values.Look(ref multiWorldPlayerStamp, nameof(multiWorldPlayerStamp), "");
+            Scribe_Values.Look(ref mwSeed, nameof(mwSeed), "");
         }
     }
 }

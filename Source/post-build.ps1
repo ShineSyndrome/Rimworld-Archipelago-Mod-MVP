@@ -1,5 +1,5 @@
 #Put your local test mod assembly location here
-$rw_test_mod_assembly_dest = "";
+$rw_test_mod_assembly_dest = "C:\RIMWorld_Debug\Mods\Rimworld-Archipelago-Mod-MVP\Assemblies";
 
 #Clean up library mods, the dll's already exist because of mod dependencies set in About.xml
 $delete = @("Harmony", "0Harmony", "HugsLib")
