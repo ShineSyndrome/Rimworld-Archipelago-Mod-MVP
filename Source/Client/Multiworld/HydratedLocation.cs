@@ -9,6 +9,6 @@ namespace RimworldArchipelago.Client.Multiworld
         public string ItemName { get; set; }
         public string PlayerAlias { get; set; }
         public bool IsResearchLocation => NetworkItem.Location >= 11_000 && NetworkItem.Location < 12_000;
-        public string ItemLabel => $"{PlayerAlias}'s {ItemName}";
+        public string ItemLabel => SelfItem ? $"Your {ItemName}" : $"{PlayerAlias}'s {ItemName}";
     }
 }

@@ -39,34 +39,36 @@ namespace RimworldArchipelago.Client.Rimworld
                 if (networkLocation != null)
                 {
                     researchLocationDef.label = networkLocation.ItemLabel;
-                    researchLocationDef.description = BuildResearchDescription(networkLocation);
                     researchLocationDef.tab = archiResearchTab;
+
+                    researchLocationDef.description = BuildResearchDescription(networkLocation);
+
+                    continue;
                 }
-                //not part of mw game
-                else
-                {
-                    var vanillaDef = DefDatabase<ResearchProjectDef>.GetNamed(vanillaDefName, false);
+                //else not part of mw game
+
+                var vanillaDef = DefDatabase<ResearchProjectDef>.GetNamed(vanillaDefName, false);
                     
-                    //Completed already, therefore probably from starting scenario and needs completing. 
-                    if (vanillaDef != null && vanillaDef.IsFinished)
-                    {
-                        researchLocationDef.label = vanillaDef.label;
-                        researchLocationDef.description = vanillaDef.description;
-                        Find.ResearchManager.FinishProject(researchLocationDef);
-                        continue;
-                    }
-
-                    //likely expansion that isn't here
-                    if (vanillaDef == null)
-                    {
-                        researchLocationDef.tab = null;
-                        continue;
-                    }
-
-                    //research location with corresponding vanilla location (not finished) that isn't part of mw
-                    //This means something has gone very wrong.
-                    throw new InvalidOperationException($"Error loading research locations, {researchLocationDef.defName} not in MW location list and not handled otherwise");
+                //Completed already, therefore probably from starting scenario and needs completing. 
+                if (vanillaDef != null && vanillaDef.IsFinished)
+                {
+                    researchLocationDef.label = vanillaDef.label;
+                    researchLocationDef.description = vanillaDef.description;
+                    Find.ResearchManager.FinishProject(researchLocationDef);
+                    continue;
                 }
+
+                //likely expansion that isn't here
+                if (vanillaDef == null)
+                {
+                    researchLocationDef.tab = null;
+                    continue;
+                }
+
+                //research location with corresponding vanilla location (not finished) that isn't part of mw
+                //This means something has gone very wrong.
+                throw new InvalidOperationException($"Error loading research locations, {researchLocationDef.defName} not in MW location list and not handled otherwise");
+                
             }
         }
 
@@ -97,12 +99,17 @@ namespace RimworldArchipelago.Client.Rimworld
                 importanceLabel = "an important";
             }
 
+            if (researchLocation.SelfItem)
+            {
+                return $"Complete this research project to receive {researchLocation.ItemLabel}. This is deemed to be {importanceLabel} item for your playthrough.";
+            }
+
             return $@"
 Completing this research project will unlock {researchLocation.ItemLabel}. This is {importanceLabel} item for their game.
 
 The Archotech network spans beyond mortal reckoning. By lending your intelligence to the Archonexus you may alter the reality of distant worlds, gifting them useful boons.
 
-These remote civilisations have strange and alien customs, but they will surely reciprocate any aid given.
+These remote civilisations have strange and alien customs, but they will surely reciprocate aid given.
 ";
         }
     }
