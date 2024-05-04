@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ResearchProjectTagDef>
+    <defName>ArchiLocation</defName>
+  </ResearchProjectTagDef>
+  <ResearchProjectTagDef>
+    <defName>CoreLocation</defName>
+  </ResearchProjectTagDef>
+  <ResearchProjectTagDef>
+    <defName>RoyaltyLocation</defName>
+  </ResearchProjectTagDef>  
+  <ResearchProjectTagDef>
+    <defName>IdeologyLocation</defName>
+  </ResearchProjectTagDef>  
+  <ResearchProjectTagDef>
+    <defName>BiotechLocation</defName>
+  </ResearchProjectTagDef>    
+</Defs>

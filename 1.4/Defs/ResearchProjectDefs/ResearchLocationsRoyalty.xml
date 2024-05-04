@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ResearchProjectDef>
+    <defName>NobleApparelLocation</defName>
+    <label>noble apparel</label>
+    <description>loc</description>
+    <baseCost>400</baseCost>
+    <techLevel>Medieval</techLevel>
+    <researchViewX>2.00</researchViewX>
+    <researchViewY>1.80</researchViewY>
+    <prerequisites>
+      <li>ComplexClothingLocation</li>
+    </prerequisites>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+  
+  <ResearchProjectDef>
+    <defName>RoyalApparelLocation</defName>
+    <label>royal apparel</label>
+    <description>loc</description>
+    <baseCost>400</baseCost>
+    <techLevel>Medieval</techLevel>
+    <researchViewX>3.00</researchViewX>
+    <researchViewY>1.80</researchViewY>
+    <prerequisites>
+      <li>NobleApparelLocation</li>
+    </prerequisites>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>CataphractArmorLocation</defName>
+    <label>cataphract armor</label>
+    <description>loc</description>
+    <baseCost>6000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <prerequisites>
+      <li>PoweredArmorLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <researchViewX>17.00</researchViewX>
+    <researchViewY>0.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+  
+  <ResearchProjectDef>
+    <defName>JumpPackLocation</defName>
+    <label>jump packs</label>
+    <description>loc</description>
+    <baseCost>2000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>12.00</researchViewX>
+    <researchViewY>3.60</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>GunlinkLocation</defName>
+    <label>gunlink</label>
+    <description>loc</description>
+    <baseCost>2000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>FabricationLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>15.00</researchViewX>
+    <researchViewY>4.5</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+  
+    <ResearchProjectDef>
+    <defName>HarpLocation</defName>
+    <label>harp</label>
+    <description>loc</description>
+    <baseCost>500</baseCost>
+    <techLevel>Medieval</techLevel>
+    <researchViewX>2.00</researchViewX>
+    <researchViewY>4.90</researchViewY>
+    <prerequisites>
+      <li>ComplexFurnitureLocation</li>
+    </prerequisites>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+  
+  <ResearchProjectDef>
+    <defName>HarpsichordLocation</defName>
+    <label>harpsichord</label>
+    <description>loc</description>
+    <baseCost>500</baseCost>
+    <techLevel>Medieval</techLevel>
+    <researchViewX>3.00</researchViewX>
+    <researchViewY>4.90</researchViewY>
+    <prerequisites>
+      <li>HarpLocation</li>
+      <li>SmithingLocation</li>
+    </prerequisites>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+  
+  <ResearchProjectDef>
+    <defName>PianoLocation</defName>
+    <label>piano</label>
+    <description>loc</description>
+    <baseCost>2000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <researchViewX>4.00</researchViewX>
+    <researchViewY>4.90</researchViewY>
+    <prerequisites>
+      <li>HarpsichordLocation</li>
+    </prerequisites>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+  
+  <ResearchProjectDef Abstract="True" Name="BaseBodyPartEmpire_TierALocation">
+    <baseCost>2000</baseCost>
+    <techLevel>Spacer</techLevel>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef Abstract="True" Name="BaseBodyPartEmpire_TierBLocation" ParentName="BaseBodyPartEmpire_TierALocation">
+    <techLevel>Ultra</techLevel>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <!--========================== Imperial implants Tier A =============================-->
+
+  <ResearchProjectDef ParentName="BaseBodyPartEmpire_TierALocation">
+    <defName>BrainWiringLocation</defName>
+    <label>brain wiring</label>
+    <description>loc</description>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <prerequisites>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <researchViewX>12.00</researchViewX>
+    <researchViewY>4.10</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="BaseBodyPartEmpire_TierALocation">
+    <defName>SpecializedLimbsLocation</defName>
+    <label>specialized limbs</label>
+    <description>loc</description>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <prerequisites>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <researchViewX>13.00</researchViewX>
+    <researchViewY>4.10</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="BaseBodyPartEmpire_TierALocation">
+    <defName>CompactWeaponryLocation</defName>
+    <label>compact weaponry</label>
+    <description>loc</description>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <prerequisites>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <researchViewX>12.00</researchViewX>
+    <researchViewY>4.60</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+    <ResearchProjectDef ParentName="BaseBodyPartEmpire_TierALocation">
+    <defName>VenomSynthesisLocation</defName>
+    <label>poison synthesis</label>
+    <description>loc</description>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <prerequisites>
+      <li>CompactWeaponryLocation</li>
+    </prerequisites>
+    <researchViewX>13.00</researchViewX>
+    <researchViewY>4.60</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <!--========================== Imperial implants Tier B =============================-->
+
+  <ResearchProjectDef ParentName="BaseBodyPartEmpire_TierBLocation">
+    <defName>ArtificialMetabolismLocation</defName>
+    <label>artificial metabolism</label>
+    <description>loc</description>
+    <prerequisites>
+      <li>FabricationLocation</li>
+    </prerequisites>
+    <researchViewX>16.00</researchViewX>
+    <researchViewY>4.30</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="BaseBodyPartEmpire_TierBLocation">
+    <defName>NeuralComputationLocation</defName>
+    <label>neural computation</label>
+    <description>loc</description>
+    <prerequisites>
+      <li>FabricationLocation</li>
+    </prerequisites>
+    <researchViewX>16.00</researchViewX>
+    <researchViewY>4.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="BaseBodyPartEmpire_TierBLocation">
+    <defName>SkinHardeningLocation</defName>
+    <label>skin hardening</label>
+    <description>loc</description>
+    <prerequisites>
+      <li>FabricationLocation</li>
+    </prerequisites>
+    <researchViewX>17.00</researchViewX>
+    <researchViewY>3.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="BaseBodyPartEmpire_TierBLocation">
+    <defName>HealingFactorsLocation</defName>
+    <label>healing factors</label>
+    <description>loc</description>
+    <prerequisites>
+      <li>FabricationLocation</li>
+    </prerequisites>
+    <researchViewX>17.00</researchViewX>
+    <researchViewY>4.30</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="BaseBodyPartEmpire_TierBLocation">
+    <defName>FleshShapingLocation</defName>
+    <label>flesh shaping</label>
+    <description>loc</description>
+    <prerequisites>
+      <li>FabricationLocation</li>
+    </prerequisites>
+    <researchViewX>17.00</researchViewX>
+    <researchViewY>4.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="BaseBodyPartEmpire_TierBLocation">
+    <defName>MolecularAnalysisLocation</defName>
+    <label>molecular analysis</label>
+    <description>loc</description>
+    <prerequisites>
+      <li>FabricationLocation</li>
+    </prerequisites>
+    <researchViewX>18.00</researchViewX>
+    <researchViewY>3.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="BaseBodyPartEmpire_TierBLocation">
+    <defName>CircadianInfluenceLocation</defName>
+    <label>circadian influence</label>
+    <description>loc</description>
+    <prerequisites>
+      <li>FabricationLocation</li>
+    </prerequisites>
+    <researchViewX>18.00</researchViewX>
+    <researchViewY>4.30</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>RoyaltyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+</Defs>

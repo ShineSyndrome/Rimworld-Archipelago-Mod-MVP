@@ -1,0 +1,1445 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--=============================== Tier 1: pre-electricity ===================================-->
+
+  <!--===== Column 1 ====-->
+  
+  <ResearchProjectDef>
+    <defName>PsychoidBrewingLocation</defName>
+    <label>psychoid brewing</label>
+    <description>loc</description>
+    <baseCost>500</baseCost>
+    <techLevel>Neolithic</techLevel>
+    <researchViewX>0.00</researchViewX>
+    <researchViewY>1.40</researchViewY>
+    <tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>TreeSowingLocation</defName>
+    <label>tree sowing</label>
+    <description>loc</description>
+    <baseCost>1000</baseCost>
+    <techLevel>Neolithic</techLevel>
+	<researchViewX>0.00</researchViewX>
+	<researchViewY>0.00</researchViewY> 
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>BrewingLocation</defName>
+    <label>beer brewing</label>
+    <description>loc</description>
+    <baseCost>400</baseCost>
+    <techLevel>Neolithic</techLevel>
+    <researchViewX>0.00</researchViewX>
+    <researchViewY>3.50</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>ComplexFurnitureLocation</defName>
+    <label>complex furniture</label>
+    <description>loc</description>
+    <baseCost>300</baseCost>
+    <techLevel>Medieval</techLevel>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>4.25</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>PassiveCoolerLocation</defName>
+    <label>passive cooler</label>
+    <description>loc</description>
+    <baseCost>400</baseCost>
+    <techLevel>Neolithic</techLevel>
+    <researchViewX>0.00</researchViewX>
+    <researchViewY>2.10</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>StonecuttingLocation</defName>
+    <label>stonecutting</label>
+    <description>loc</description>
+    <baseCost>300</baseCost>
+    <techLevel>Medieval</techLevel>
+    
+    <researchViewX>0.00</researchViewX>
+    <researchViewY>4.25</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>ComplexClothingLocation</defName>
+    <label>complex clothing</label>
+    <description>loc</description>
+    <baseCost>600</baseCost>
+    <techLevel>Medieval</techLevel>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>2.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <!--====== Column 2 ======-->
+
+  <ResearchProjectDef>
+    <defName>DrugProductionLocation</defName>
+    <label>drug production</label>
+    <description>loc</description>
+    <baseCost>500</baseCost>
+    <techLevel>Industrial</techLevel>
+    <researchViewX>3.00</researchViewX>
+    <researchViewY>0.00</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>CocoaLocation</defName>
+    <label>cocoa</label>
+    <description>loc</description>
+    <baseCost>1000</baseCost>
+    <techLevel>Neolithic</techLevel>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>0.00</researchViewY>
+    <prerequisites>
+      <li>TreeSowingLocation</li>
+    </prerequisites>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+  
+  <ResearchProjectDef>
+    <defName>DevilstrandLocation</defName>
+    <label>devilstrand</label>
+    <description>loc</description>
+    <baseCost>800</baseCost>
+    <techLevel>Neolithic</techLevel>
+    <researchViewX>0.00</researchViewX>
+    <researchViewY>2.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>CarpetMakingLocation</defName>
+    <label>carpet making</label>
+    <description>loc</description>
+    <baseCost>800</baseCost>
+    <techLevel>Medieval</techLevel>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>2.10</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+    <ResearchProjectDef>
+    <defName>PemmicanLocation</defName>
+    <label>pemmican</label>
+    <description>loc</description>
+    <baseCost>500</baseCost>
+    <techLevel>Neolithic</techLevel>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>1.40</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <!--====== Column 3+ ======-->
+  
+  <ResearchProjectDef>
+    <defName>SmithingLocation</defName>
+    <label>smithing</label>
+    <description>loc</description>
+    <baseCost>700</baseCost>
+    <techLevel>Medieval</techLevel>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>3.50</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>RecurveBowLocation</defName>
+    <label>recurve bow</label>
+    <description>loc</description>
+    <baseCost>400</baseCost>
+    <techLevel>Neolithic</techLevel>
+    <researchViewX>0.00</researchViewX>
+    <researchViewY>0.70</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <!--====== Drugs ======-->
+
+  <ResearchProjectDef>
+    <defName>PsychiteRefiningLocation</defName>
+    <label>psychite refining</label>
+    <description>loc</description>
+    <baseCost>400</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>DrugProductionLocation</li>
+    </prerequisites>
+    <researchViewX>4.00</researchViewX>
+    <researchViewY>0.40</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>WakeUpProductionLocation</defName>
+    <label>wake-up production</label>
+    <description>loc</description>
+    <baseCost>600</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>DrugProductionLocation</li>
+    </prerequisites>
+    <researchViewX>4.00</researchViewX>
+    <researchViewY>1.10</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>GoJuiceProductionLocation</defName>
+    <label>go-juice production</label>
+    <description>loc</description>
+    <baseCost>1000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>DrugProductionLocation</li>
+    </prerequisites>
+    <researchViewX>4.00</researchViewX>
+    <researchViewY>1.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>PenoxycylineProductionLocation</defName>
+    <label>penoxycyline production</label>
+    <description>loc</description>
+    <baseCost>500</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>DrugProductionLocation</li>
+    </prerequisites>
+    <researchViewX>4.00</researchViewX>
+    <researchViewY>2.50</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <!--====== Medieval weapons ======-->
+
+  <ResearchProjectDef>
+    <defName>LongBladesLocation</defName>
+    <label>long blades</label>
+    <description>loc</description>
+    <baseCost>400</baseCost>
+    <techLevel>Medieval</techLevel>
+    <prerequisites>
+      <li>SmithingLocation</li>
+    </prerequisites>
+    <researchViewX>2.00</researchViewX>
+    <researchViewY>3.15</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>PlateArmorLocation</defName>
+    <label>plate armor</label>
+    <description>loc</description>
+    <baseCost>600</baseCost>
+    <techLevel>Medieval</techLevel>
+    <prerequisites>
+      <li>SmithingLocation</li>
+      <li>ComplexClothingLocation</li>
+    </prerequisites>
+    <researchViewX>2.00</researchViewX>
+    <researchViewY>2.50</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>GreatbowLocation</defName>
+    <label>greatbow</label>
+    <description>loc</description>
+    <baseCost>600</baseCost>
+    <techLevel>Medieval</techLevel>
+    <prerequisites>
+      <li>RecurveBowLocation</li>
+    </prerequisites>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>0.70</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+</ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>ElectricityLocation</defName>
+    <label>electricity</label>
+    <description>loc</description>
+    <baseCost>1600</baseCost>
+    <techLevel>Industrial</techLevel>  
+    <researchViewX>5.00</researchViewX>
+    <researchViewY>2.90</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>BatteriesLocation</defName>
+    <label>battery</label>
+    <description>loc</description>
+    <baseCost>400</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>6.00</researchViewX>
+    <researchViewY>0.30</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>BiofuelRefiningLocation</defName>
+    <label>biofuel refining</label>
+    <description>loc</description>
+    <baseCost>700</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>7.00</researchViewX>
+    <researchViewY>2.70</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>WatermillGeneratorLocation</defName>
+    <label>watermill generator</label>
+    <description>loc</description>
+    <baseCost>700</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>8.00</researchViewX>
+    <researchViewY>2.10</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>NutrientPasteLocation</defName>
+    <label>nutrient paste</label>
+    <description>loc</description>
+    <baseCost>400</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>8.00</researchViewX>
+    <researchViewY>1.50</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>SolarPanelsLocation</defName>
+    <label>solar panel</label>
+    <description>loc</description>
+    <baseCost>600</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>7.00</researchViewX>
+    <researchViewY>2.10</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>AirConditioningLocation</defName>
+    <label>air conditioning</label>
+    <description>loc</description>
+    <baseCost>500</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>6.00</researchViewX>
+    <researchViewY>2.10</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>AutodoorsLocation</defName>
+    <label>autodoor</label>
+    <description>loc</description>
+    <baseCost>600</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>6.00</researchViewX>
+    <researchViewY>0.90</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>HydroponicsLocation</defName>
+    <label>hydroponics</label>
+    <description>loc</description>
+    <baseCost>700</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>6.00</researchViewX>
+    <researchViewY>1.50</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>TubeTelevisionLocation</defName>
+    <label>tube television</label>
+    <description>loc</description>
+    <baseCost>1000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>9.00</researchViewX>
+    <researchViewY>0.90</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>PackagedSurvivalMealLocation</defName>
+    <label>packaged survival meal</label>
+    <description>loc</description>
+    <baseCost>500</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>NutrientPasteLocation</li>
+    </prerequisites>
+    <researchViewX>9.00</researchViewX>
+    <researchViewY>1.50</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>FirefoamLocation</defName>
+    <label>firefoam</label>
+    <description>loc</description>
+    <baseCost>600</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>7.00</researchViewX>
+    <researchViewY>1.50</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>IEDsLocation</defName>
+    <label>IEDs</label>
+    <description>loc</description>
+    <baseCost>500</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>7.00</researchViewX>
+    <researchViewY>0.90</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>GeothermalPowerLocation</defName>
+    <label>geothermal power</label>
+    <description>loc</description>
+    <baseCost>3200</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>9.00</researchViewX>
+    <researchViewY>2.10</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>SterileMaterialsLocation</defName>
+    <label>sterile materials</label>
+    <description>loc</description>
+    <baseCost>600</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>8.00</researchViewX>
+    <researchViewY>0.90</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>ColoredLightsLocation</defName>
+    <label>advanced lights</label>
+    <description>loc</description>
+    <baseCost>300</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <recalculatePower>true</recalculatePower>
+    <researchViewX>6.00</researchViewX>
+    <researchViewY>2.70</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <!--===================== Machining and its children sub-tier ======================-->
+
+  <ResearchProjectDef>
+    <defName>MachiningLocation</defName>
+    <label>machining</label>
+    <description>loc</description>
+    <baseCost>1000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+      <li>SmithingLocation</li>
+    </prerequisites>
+    <researchViewX>6.00</researchViewX>
+    <researchViewY>3.50</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>SmokepopBeltLocation</defName>
+    <label>smokepop packs</label>
+    <description>loc</description>
+    <baseCost>300</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MachiningLocation</li>
+    </prerequisites>
+    <researchViewX>7.00</researchViewX>
+    <researchViewY>4.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>ProstheticsLocation</defName>
+    <label>prosthetics</label>
+    <description>loc</description>
+    <baseCost>600</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MachiningLocation</li>
+    </prerequisites>
+    <researchViewX>8.00</researchViewX>
+    <researchViewY>4.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>GunsmithingLocation</defName>
+    <label>gunsmithing</label>
+    <description>loc</description>
+    <baseCost>500</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MachiningLocation</li>
+    </prerequisites>
+    <researchViewX>7.00</researchViewX>
+    <researchViewY>3.40</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>FlakArmorLocation</defName>
+    <label>flak armor</label>
+    <description>loc</description>
+    <baseCost>1200</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MachiningLocation</li>
+    </prerequisites>
+    <researchViewX>7.00</researchViewX>
+    <researchViewY>4.10</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>MortarsLocation</defName>
+    <label>mortars</label>
+    <description>loc</description>
+    <baseCost>2000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>GunsmithingLocation</li>
+    </prerequisites>
+    <researchViewX>8.00</researchViewX>
+    <researchViewY>4.10</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>BlowbackOperationLocation</defName>
+    <label>blowback operation</label>
+    <description>loc</description>
+    <baseCost>500</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>GunsmithingLocation</li>
+    </prerequisites>
+    <researchViewX>8.00</researchViewX>
+    <researchViewY>3.40</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>GasOperationLocation</defName>
+    <label>gas operation</label>
+    <description>loc</description>
+    <baseCost>1000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>BlowbackOperationLocation</li>
+    </prerequisites>
+    <researchViewX>9.00</researchViewX>
+    <researchViewY>3.40</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>GunTurretsLocation</defName>
+    <label>gun turrets</label>
+    <description>loc</description>
+    <baseCost>500</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>BlowbackOperationLocation</li>
+    </prerequisites>
+    <researchViewX>9.00</researchViewX>
+    <researchViewY>4.10</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>FoamTurretLocation</defName>
+    <label>foam turret</label>
+    <description>loc</description>
+    <baseCost>800</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>GunTurretsLocation</li>
+    </prerequisites>
+    
+    <researchViewX>10.00</researchViewX>
+    <researchViewY>4.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+  
+  <ResearchProjectDef>
+    <defName>MicroelectronicsBasicsLocation</defName>
+    <label>microelectronics</label>
+    <description>loc</description>
+    <baseCost>3000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>10.00</researchViewX>
+    <researchViewY>2.90</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>FlatscreenTelevisionLocation</defName>
+    <label>flatscreen television</label>
+    <description>loc</description>
+    <baseCost>2000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>TubeTelevisionLocation</li>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>11.00</researchViewX>
+    <researchViewY>0.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>MoisturePumpLocation</defName>
+    <label>moisture pump</label>
+    <description>loc</description>
+    <baseCost>1200</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <hiddenPrerequisites>
+      <li>Machining</li>
+    </hiddenPrerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>12.00</researchViewX>
+    <researchViewY>0.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>HospitalBedLocation</defName>
+    <label>hospital bed</label>
+    <description>loc</description>
+    <baseCost>1200</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>13.00</researchViewX>
+    <researchViewY>1.50</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>DeepDrillingLocation</defName>
+    <label>deep drilling</label>
+    <description>loc</description>
+    <baseCost>1000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>12.00</researchViewX>
+    <researchViewY>2.20</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>GroundPenetratingScannerLocation</defName>
+    <label>ground-penetrating scanner</label>
+    <description>loc</description>
+    <baseCost>1000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>DeepDrillingLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>13.00</researchViewX>
+    <researchViewY>2.20</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+  
+  <ResearchProjectDef>
+    <defName>TransportPodLocation</defName>
+    <label>transport pod</label>
+    <description>loc</description>
+    <baseCost>1000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>11.00</researchViewX>
+    <researchViewY>2.20</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>MedicineProductionLocation</defName>
+    <label>medicine production</label>
+    <description>loc</description>
+    <baseCost>1500</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>DrugProductionLocation</li>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>11.00</researchViewX>
+    <researchViewY>0.00</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>LongRangeMineralScannerLocation</defName>
+    <label>long-range mineral scanner</label>
+    <description>loc</description>
+    <baseCost>2000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>12.00</researchViewX>
+    <researchViewY>0.00</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>ShieldBeltLocation</defName>
+    <label>shields</label>
+    <description>loc</description>
+    <baseCost>1000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <prerequisites>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>11.00</researchViewX>
+    <researchViewY>1.50</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <!--===================== Machining and its children sub-tier ======================-->
+
+ <ResearchProjectDef>
+    <defName>PrecisionRiflingLocation</defName>
+    <label>precision rifling</label>
+    <description>loc</description>
+    <baseCost>1400</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>GasOperationLocation</li>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+   <researchViewX>11.00</researchViewX>
+   <researchViewY>3.90</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>HeavyTurretsLocation</defName>
+    <label>autocannon turret</label>
+    <description>loc</description>
+    <baseCost>1600</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>GunTurretsLocation</li>
+      <li>GasOperationLocation</li>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>11.00</researchViewX>
+    <researchViewY>3.20</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>MultibarrelWeaponsLocation</defName>
+    <label>multibarrel weapons</label>
+    <description>loc</description>
+    <baseCost>2600</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>GasOperationLocation</li>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>11.00</researchViewX>
+    <researchViewY>4.60</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+  
+  <ResearchProjectDef>
+    <defName>MultiAnalyzerLocation</defName>
+    <label>multi-analyzer</label>
+    <description>loc</description>
+    <baseCost>4000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <researchViewX>13.00</researchViewX>
+    <researchViewY>2.90</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>VitalsMonitorLocation</defName>
+    <label>vitals monitor</label>
+    <description>loc</description>
+    <baseCost>2500</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MultiAnalyzerLocation</li>
+      <li>HospitalBedLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <researchViewX>14.00</researchViewX>
+    <researchViewY>1.50</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>FabricationLocation</defName>
+    <label>fabrication</label>
+    <description>loc</description>
+    <baseCost>4000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MultiAnalyzerLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <researchViewX>14.00</researchViewX>
+    <researchViewY>2.90</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>AdvancedFabricationLocation</defName>
+    <label>advanced fabrication</label>
+    <description>loc</description>
+    <baseCost>4000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>FabricationLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <researchViewX>16.00</researchViewX>
+    <researchViewY>2.90</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>CryptosleepLocation</defName>
+    <label>cryptosleep casket</label>
+    <description>loc</description>
+    <baseCost>2000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <prerequisites>
+      <li>MultiAnalyzerLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <researchViewX>14.00</researchViewX>
+    <researchViewY>2.20</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>ReconArmorLocation</defName>
+    <label>recon armor</label>
+    <description>loc</description>
+    <baseCost>6000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <prerequisites>
+      <li>FabricationLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <researchViewX>15.00</researchViewX>
+    <researchViewY>0.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>PoweredArmorLocation</defName>
+    <label>marine armor</label>
+    <description>loc</description>
+    <baseCost>6000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <prerequisites>
+      <li>ReconArmorLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <researchViewX>16.00</researchViewX>
+    <researchViewY>0.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>ChargedShotLocation</defName>
+    <label>pulse-charged munitions</label>
+    <description>loc</description>
+    <baseCost>3000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <prerequisites>
+      <li>FabricationLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <researchViewX>15.00</researchViewX>
+    <researchViewY>3.8</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>BionicsLocation</defName>
+    <label>bionic replacements</label>
+    <description>loc</description>
+    <baseCost>2000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <prerequisites>
+      <li>FabricationLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <researchViewX>16.00</researchViewX>
+    <researchViewY>3.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>SniperTurretLocation</defName>
+    <label>uranium slug turret</label>
+    <description>loc</description>
+    <baseCost>3000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MultiAnalyzerLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <researchViewX>14.00</researchViewX>
+    <researchViewY>3.60</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>RocketswarmLauncherLocation</defName>
+    <label>rocketswarm launcher</label>
+    <description>loc</description>
+    <baseCost>3000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>MultiAnalyzerLocation</li>
+    </prerequisites>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <researchViewX>14.00</researchViewX>
+    <researchViewY>4.10</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+  
+    <ResearchProjectDef Name="ShipResearchProjectBaseLocation" Abstract="True">
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="ShipResearchProjectBaseLocation">
+    <defName>ShipBasicsLocation</defName>
+    <label>starflight basics</label>
+    <description>loc</description>
+    <baseCost>4000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <prerequisites>
+      <li>AdvancedFabricationLocation</li>
+    </prerequisites>
+    <researchViewX>18.00</researchViewX>
+    <researchViewY>2.90</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="ShipResearchProjectBaseLocation">
+    <defName>ShipCryptosleepLocation</defName>
+    <label>vacuum cryptosleep casket</label>
+    <description>loc</description>
+    <baseCost>2800</baseCost>
+    <techLevel>Spacer</techLevel>
+    <prerequisites>
+      <li>ShipBasicsLocation</li>
+      <li>CryptosleepLocation</li>
+    </prerequisites>
+    <researchViewX>19.00</researchViewX>
+    <researchViewY>2.20</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="ShipResearchProjectBaseLocation">
+    <defName>ShipReactorLocation</defName>
+    <label>starship reactor</label>
+    <description>loc</description>
+    <baseCost>6000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <prerequisites>
+      <li>ShipBasicsLocation</li>
+    </prerequisites>
+    <researchViewX>19.00</researchViewX>
+    <researchViewY>3.60</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="ShipResearchProjectBaseLocation">
+    <defName>ShipEngineLocation</defName>
+    <label>Johnson-Tanaka drive</label>
+    <description>loc</description>
+    <baseCost>6000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <prerequisites>
+      <li>ShipBasicsLocation</li>
+    </prerequisites>
+    <researchViewX>19.00</researchViewX>
+    <researchViewY>4.85</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="ShipResearchProjectBaseLocation">
+    <defName>ShipComputerCoreLocation</defName>
+    <label>machine persuasion</label>
+    <description>loc</description>
+    <baseCost>3000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <prerequisites>
+      <li>ShipBasicsLocation</li>
+    </prerequisites>
+    <researchViewX>19.00</researchViewX>
+    <researchViewY>1.15</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="ShipResearchProjectBaseLocation">
+    <defName>ShipSensorClusterLocation</defName>
+    <label>starflight sensors</label>
+    <description>loc</description>
+    <baseCost>4000</baseCost>
+    <techLevel>Spacer</techLevel>
+    <prerequisites>
+      <li>ShipBasicsLocation</li>
+    </prerequisites>
+    <researchViewX>19.00</researchViewX>
+    <researchViewY>0.00</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>CoreLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+</Defs>

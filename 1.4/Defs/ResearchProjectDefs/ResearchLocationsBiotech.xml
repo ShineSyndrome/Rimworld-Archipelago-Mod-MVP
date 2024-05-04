@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ResearchProjectDef>
+    <defName>ToxifierGeneratorLocation</defName>
+    <label>toxifier generator</label>
+    <description>loc</description>
+    <baseCost>500</baseCost>
+    <researchViewX>9.00</researchViewX>
+    <researchViewY>2.70</researchViewY>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>XenogerminationLocation</defName>
+    <label>xenogenetics</label>
+    <description>loc</description>
+    <techLevel>Industrial</techLevel>
+    <baseCost>1000</baseCost>
+    <researchViewX>6.00</researchViewX>
+    <researchViewY>5.40</researchViewY>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>GeneProcessorLocation</defName>
+    <label>gene processor</label>
+    <description>loc</description>
+    <techLevel>Industrial</techLevel>
+    <baseCost>1500</baseCost>
+    <researchViewX>11.00</researchViewX>
+    <researchViewY>5.40</researchViewY>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <prerequisites>
+      <li>XenogerminationLocation</li>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>ArchogeneticsLocation</defName>
+    <label>archogenetics</label>
+    <description>loc</description>
+    <techLevel>Industrial</techLevel>
+    <baseCost>2500</baseCost>
+    <researchViewX>16.00</researchViewX>
+    <researchViewY>5.40</researchViewY>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+    <prerequisites>
+      <li>FabricationLocation</li>
+      <li>GeneProcessorLocation</li>
+    </prerequisites>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>DeathrestLocation</defName>
+    <label>deathrest</label>
+    <description>loc</description>
+    <techLevel>Industrial</techLevel>
+    <baseCost>1000</baseCost>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>8.00</researchViewX>
+    <researchViewY>2.70</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>FertilityProceduresLocation</defName>
+    <label>fertility procedures</label>
+    <description>loc</description>
+    <techLevel>Industrial</techLevel>
+    <baseCost>1000</baseCost>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+    <researchViewX>8.00</researchViewX>
+    <researchViewY>0.30</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>ToxGasLocation</defName>
+    <label>tox gas</label>
+    <description>loc</description>
+    <techLevel>Industrial</techLevel>
+    <baseCost>600</baseCost>
+    <prerequisites>
+      <li>MachiningLocation</li>
+    </prerequisites>
+    <researchViewX>9.00</researchViewX>
+    <researchViewY>4.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>ToxFiltrationLocation</defName>
+    <label>toxin filtration</label>
+    <description>loc</description>
+    <techLevel>Spacer</techLevel>
+    <baseCost>2000</baseCost>
+    <prerequisites>
+      <li>FabricationLocation</li>
+    </prerequisites>
+    <researchViewX>18.00</researchViewX>
+    <researchViewY>4.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>GrowthVatsLocation</defName>
+    <label>growth vats</label>
+    <description>loc</description>
+    <techLevel>Spacer</techLevel>
+    <baseCost>500</baseCost>
+    <prerequisites>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <researchViewX>12.00</researchViewX>
+    <researchViewY>1.50</researchViewY>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+  
+    <ResearchProjectDef Abstract="True" Name="MechtechBaseLocation">
+    <techLevel>Industrial</techLevel>
+    <requiresMechanitor>true</requiresMechanitor>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="MechtechBaseLocation">
+    <defName>BasicMechtechLocation</defName>
+    <label>basic mechtech</label>
+    <description>loc</description>
+    <baseCost>200</baseCost>
+    <researchViewX>9.00</researchViewX>
+    <researchViewY>0.30</researchViewY>
+    <prerequisites>
+      <li>ElectricityLocation</li>
+    </prerequisites>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="MechtechBaseLocation">
+    <defName>StandardMechtechLocation</defName>
+    <label>standard mechtech</label>
+    <description>loc</description>
+    <baseCost>1000</baseCost>
+    <researchViewX>13.00</researchViewX>
+    <researchViewY>0.00</researchViewY>
+    <techprintMarketValue>1000</techprintMarketValue>
+    <prerequisites>
+      <li>BasicMechtechLocation</li>
+    </prerequisites>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="MechtechBaseLocation">
+    <defName>HighMechtechLocation</defName>
+    <label>high mechtech</label>
+    <description>loc</description>
+    <baseCost>3000</baseCost>
+    <researchViewX>14.00</researchViewX>
+    <researchViewY>0.00</researchViewY>
+    <techprintMarketValue>1500</techprintMarketValue>
+    <prerequisites>
+      <li>StandardMechtechLocation</li>
+      <li>MultiAnalyzerLocation</li>
+    </prerequisites>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef ParentName="MechtechBaseLocation">
+    <defName>UltraMechtechLocation</defName>
+    <label>ultra mechtech</label>
+    <description>loc</description>
+    <baseCost>5000</baseCost>
+    <techLevel>Ultra</techLevel>
+    <researchViewX>15.00</researchViewX>
+    <researchViewY>0.00</researchViewY>
+    <techprintMarketValue>2000</techprintMarketValue>
+    <prerequisites>
+      <li>FabricationLocation</li>
+      <li>HighMechtechLocation</li>
+    </prerequisites>
+    <requiredResearchFacilities>
+      <li>MultiAnalyzer</li>
+    </requiredResearchFacilities>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <!-- =========================================================== -->
+
+  <ResearchProjectDef>
+    <defName>WastepackAtomizerLocation</defName>
+    <label>wastepack atomizer</label>
+    <description>loc</description>
+    <baseCost>8000</baseCost>
+    <researchViewX>17.00</researchViewX>
+    <researchViewY>1.50</researchViewY>
+    <techLevel>Industrial</techLevel>
+    <prerequisites>
+      <li>AdvancedFabricationLocation</li>
+    </prerequisites>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>BiotechLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+</Defs>

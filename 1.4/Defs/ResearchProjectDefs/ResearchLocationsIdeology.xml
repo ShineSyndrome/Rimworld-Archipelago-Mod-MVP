@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <ResearchProjectDef>
+    <defName>BiosculptingLocation</defName>
+    <label>biosculpting</label>
+    <description>loc</description>
+    <baseCost>1500</baseCost>
+    <techLevel>Industrial</techLevel>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <prerequisites>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <researchViewX>13.00</researchViewX>
+    <researchViewY>0.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>IdeologyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>BioregenerationLocation</defName>
+    <label>bioregeneration</label>
+    <description>loc</description>
+    <baseCost>4000</baseCost>
+    <techLevel>Industrial</techLevel>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <prerequisites>
+      <li>BiosculptingLocation</li>
+      <li>MultiAnalyzerLocation</li>
+    </prerequisites>
+    <researchViewX>14.00</researchViewX>
+    <researchViewY>0.80</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>IdeologyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+  <ResearchProjectDef>
+    <defName>NeuralSuperchargerLocation</defName>
+    <label>neural supercharger</label>
+    <description>loc</description>
+    <baseCost>1500</baseCost>
+    <techLevel>Industrial</techLevel>
+    <requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+    <prerequisites>
+      <li>MicroelectronicsBasicsLocation</li>
+    </prerequisites>
+    <researchViewX>13.00</researchViewX>
+    <researchViewY>3.6</researchViewY>
+	<tab>AD_Archipelago</tab>
+	<tags>
+		<li>ArchiLocation</li>
+		<li>IdeologyLocation</li>
+	</tags>
+  </ResearchProjectDef>
+
+</Defs>
