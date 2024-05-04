@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Client\Data\ResearchLocations.cs" />
-    <Compile Include="Client\Multiworld\Location.cs" />
+    <Compile Include="Client\Multiworld\HydratedLocation.cs" />
     <Compile Include="Client\Rimworld\ArchipelagoLoader.cs" />
     <Compile Include="Client\Rimworld\ArchipelagoGameComponent.cs" />
     <Compile Include="Client\Rimworld\ArchipelagoWorldComponent.cs" />
@@ -63,7 +63,9 @@
       <Version>10.0.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Client\Enums\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>powershell -NoProfile -ExecutionPolicy RemoteSigned -file $(ProjectDir)\post-build.ps1</PostBuildEvent>

@@ -15,37 +15,35 @@ namespace RimworldArchipelago.Client
     public class Main : HugsLib.ModBase
     {
         internal static Main Instance { get; private set; }
-        public static IServiceProvider ServiceProvider { get; private set; }
 
         internal MultiWorldSessionManager MultiWorldSessionManager { get; } = new MultiWorldSessionManager();
         internal ComponentStateManager ComponentStateManager { get; } = new ComponentStateManager();
         internal DefManager DefManager { get; } =  new DefManager();
 
+        public string Address { get; private set; } = "127.0.0.1:38281";
+        public string PlayerSlot { get; private set; } = "Player";
+
         internal bool Connected { get { return MultiWorldSessionManager.Session?.Socket?.Connected ?? false; } }
         // todo: allow users to connect multiple times.
         // eg- preserve original defs.
 
-
+        public static bool IsResearchLocation(long id) => id >= 11_000 && id < 12_000;
         public ArchipelagoSession Session { get => MultiWorldSessionManager.Session; }
+        public string GetPlayerStamp => ComponentStateManager.GetMultiworldMarker();
+        public string GetMWSeedStamp => ComponentStateManager.GetMWSeed();
+        public IEnumerable<HydratedLocation> AllLocations => MultiWorldSessionManager.AllHydratedLocations;
 
-        public string Address { get; private set; } = "127.0.0.1:38281";
-        public string PlayerSlot { get; private set; } = "Player";
-
-        public struct RimWorldDef { public string DefName; public string DefType; public int Quantity; }
-        public IDictionary<string, long> DefNameToArchipelagoId { get;  } = new ConcurrentDictionary<string, long>();
+        /************************************************/
+        public IDictionary<string, long> DefNameToArchipelagoId { get; } = new ConcurrentDictionary<string, long>();
         public IDictionary<long, RimWorldDef> ArchipeligoItemIdToRimWorldDef { get; } = new ConcurrentDictionary<long, RimWorldDef>();
+        public struct RimWorldDef { public string DefName; public string DefType; public int Quantity; }
 
         public ArchipelagoLoader ArchipelagoLoader { get; private set; }
-
-        public static bool IsResearchLocation(long id) => id >= 11_000 && id < 12_000;
-
+        /******************************/
         public Main()
         {
             Instance = this;
         }
-
-        public string GetPlayerStamp => ComponentStateManager.GetMultiworldMarker();
-        public string GetMWSeedStamp => ComponentStateManager.GetMWSeed();
 
         public void UpdatePlayerStamp()
         {
@@ -98,7 +96,7 @@ namespace RimworldArchipelago.Client
 
         public void LoadMultiworld()
         {
-            var researchLocations = MultiWorldSessionManager.AllLocations
+            var researchLocations = MultiWorldSessionManager.AllHydratedLocations
                 .Where(l => l.IsResearchLocation);
             //setting up research according to locations and items
             this.DefManager.LoadResearchDefs(researchLocations);
