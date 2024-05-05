@@ -73,6 +73,7 @@ namespace RimworldArchipelago.Client
 
             if (result.Successful)
             {
+                MultiWorldSessionManager.InitialiseFromConnection(playerSlot);
                 Logger.Message("Successfully Connected.");
                 return true;
             }

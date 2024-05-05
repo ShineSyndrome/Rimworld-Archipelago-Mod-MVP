@@ -28,7 +28,7 @@ namespace RimworldArchipelago.Client.Multiworld
                 Session = ArchipelagoSessionFactory.CreateSession(address);
             }
 
-            LoginResult loginResult = null;
+            LoginResult loginResult;
 
             try
             {
@@ -39,6 +39,11 @@ namespace RimworldArchipelago.Client.Multiworld
                 return new LoginFailure(e.GetBaseException().Message);
             }
 
+            return loginResult;
+        }
+
+        public void InitialiseFromConnection(string playerSlot)
+        {
             CurrentPlayerId = Session.Players.AllPlayers.Single(x => x.Name == playerSlot).Slot;
             SlotData = Session.DataStorage.GetSlotData(CurrentPlayerId);
 
@@ -46,8 +51,6 @@ namespace RimworldArchipelago.Client.Multiworld
             Task.Run(async () => await InitialLocationsScout(allLocationIds));
 
             Seed = Session.RoomState.Seed;
-
-            return loginResult;
         }
 
         public int GetSlotDataInteger(string key)
