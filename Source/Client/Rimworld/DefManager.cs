@@ -65,10 +65,10 @@ namespace RimworldArchipelago.Client.Rimworld
                     continue;
                 }
 
-                //research location with corresponding vanilla location (not finished) that isn't part of mw
+                //If we're here, we have a research location with a corresponding vanilla location (not finished)
+                //That somehow isn't part of the multiworld.
                 //This means something has gone very wrong.
-                throw new InvalidOperationException($"Error loading research locations, {researchLocationDef.defName} not in MW location list and not handled otherwise");
-                
+                throw new InvalidOperationException($"Error loading research locations, {researchLocationDef.defName} not in MW location list and not handled otherwise"); 
             }
         }
 
