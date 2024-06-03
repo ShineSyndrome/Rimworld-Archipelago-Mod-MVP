@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RimWorld;
+using System;
 using Verse;
 
 namespace RimworldArchipelago.Client.Rimworld
@@ -6,16 +7,15 @@ namespace RimworldArchipelago.Client.Rimworld
     public class ArchipelagoGameComponent : GameComponent
     {
         private Main Main { get; } = Main.Instance;
+        private Game Game { get; }
 
         public ArchipelagoGameComponent(Game game) : base()
         {
-
+            Game = game;
         }
 
         public override void StartedNewGame()
         {
-            base.StartedNewGame();
-
             if (Main.Connected)
             {
                 Main.UpdatePlayerStamp();

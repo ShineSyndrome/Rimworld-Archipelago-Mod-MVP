@@ -12,6 +12,8 @@ foreach ($item in $delete) {
     }
 }
 
+$items = Get-ChildItem -Path ../1.4/Defs/ResearchProjectDefs
+
 #Voodoo. Required to stop errors from .dll's being loaded in the wrong order.
 $items = Get-ChildItem -Path ../assemblies
 $order = @("Harmony", "Newtonsoft", "websocket", "Archipelago.MultiClient", "RimworldArchipelago")

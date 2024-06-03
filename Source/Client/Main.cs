@@ -1,5 +1,6 @@
 ﻿using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
+using Archipelago.MultiClient.Net.Helpers;
 using RimworldArchipelago.Client.Multiworld;
 using RimworldArchipelago.Client.Rimworld;
 using RimworldArchipelago.RimWorld;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using Verse;
 
 
 namespace RimworldArchipelago.Client
@@ -18,7 +20,7 @@ namespace RimworldArchipelago.Client
 
         internal MultiWorldSessionManager MultiWorldSessionManager { get; } = new MultiWorldSessionManager();
         internal ComponentStateManager ComponentStateManager { get; } = new ComponentStateManager();
-        internal DefManager DefManager { get; } =  new DefManager();
+        internal DefManager DefManager { get; } = new DefManager();
 
         public string Address { get; private set; } = "127.0.0.1:38281";
         public string PlayerSlot { get; private set; } = "Player";
@@ -57,7 +59,7 @@ namespace RimworldArchipelago.Client
                 Logger.Error(message);
             }
             else
-            { 
+            {
                 Logger.Message(message);
             }
         }
@@ -102,6 +104,29 @@ namespace RimworldArchipelago.Client
             //setting up research according to locations and items
             this.DefManager.LoadResearchDefs(researchLocations);
             //register hooks
+        }
+
+        private void RegisterSessionHooks()
+        {
+            Session.Items.ItemReceived += (receivedItemsHelper) =>
+            {
+                var itemReceivedName = receivedItemsHelper.PeekItemName();
+                Log.Message($"Received Item: {itemReceivedName}");
+                var networkItem = receivedItemsHelper.DequeueItem();
+
+                //def manager?
+                ComponentStateManager.ReceiveItem(networkItem);
+            };
+
+            //Session.MessageLog.OnMessageReceived += (message) =>
+            //{
+            //    foreach (var part in message.Parts)
+            //    {
+            //        Find.LetterStack.ReceiveLetter(part.Text, part.Text, LetterDefOf.NeutralEvent);
+            //        Messages.Message(part.Text, MessageTypeDefOf.SilentInput, false);
+            //        Log.Message(part.Text);
+            //    }
+            //};
         }
 
         public void SendLocationCheck(string defName)

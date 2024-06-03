@@ -213,23 +213,23 @@ namespace RimworldArchipelago.RimWorld
 
         private void AddSessionHooks()
         {
-            //Session.Items.ItemReceived += (receivedItemsHelper) =>
-            //{
-            //    var itemReceivedName = receivedItemsHelper.PeekItemName();
-            //    Log.Message($"Received Item: {itemReceivedName}");
-            //    var networkItem = receivedItemsHelper.DequeueItem();
-            //    ComponentStateManager.ReceiveItem(networkItem.Item);
-            //};
+            Session.Items.ItemReceived += (receivedItemsHelper) =>
+            {
+                var itemReceivedName = receivedItemsHelper.PeekItemName();
+                Log.Message($"Received Item: {itemReceivedName}");
+                var networkItem = receivedItemsHelper.DequeueItem();
+                ComponentStateManager.ReceiveItem(networkItem.Item);
+            };
 
-            //Session.MessageLog.OnMessageReceived += (message) =>
-            //{
-            //    foreach (var part in message.Parts)
-            //    {
-            //        Find.LetterStack.ReceiveLetter(part.Text, part.Text, LetterDefOf.NeutralEvent);
-            //        Messages.Message(part.Text, MessageTypeDefOf.SilentInput, false);
-            //        Log.Message(part.Text);
-            //    }
-            //};
+            Session.MessageLog.OnMessageReceived += (message) =>
+            {
+                foreach (var part in message.Parts)
+                {
+                    Find.LetterStack.ReceiveLetter(part.Text, part.Text, LetterDefOf.NeutralEvent);
+                    Messages.Message(part.Text, MessageTypeDefOf.SilentInput, false);
+                    Log.Message(part.Text);
+                }
+            };
         }
     }
 }

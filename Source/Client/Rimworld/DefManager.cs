@@ -1,10 +1,12 @@
 ﻿using Archipelago.MultiClient.Net.Enums;
+using Archipelago.MultiClient.Net.Models;
 using RimWorld;
 using RimworldArchipelago.Client.Data;
 using RimworldArchipelago.Client.Multiworld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Verse;
 
 namespace RimworldArchipelago.Client.Rimworld
@@ -70,6 +72,25 @@ namespace RimworldArchipelago.Client.Rimworld
                 //This means something has gone very wrong.
                 throw new InvalidOperationException($"Error loading research locations, {researchLocationDef.defName} not in MW location list and not handled otherwise"); 
             }
+        }
+
+        public void ProcessReceivedItem(NetworkItem item)
+        {
+            if (ResearchLocations.AllResearchLocations.ContainsKey(item.Item))
+            {
+                var researchName = ResearchLocations.AllResearchLocations[item.Item];
+                var def = DefDatabase<ResearchProjectDef>.GetNamed(researchName, true);
+                Find.ResearchManager.FinishProject(def);
+            }
+
+            SendItemReceivedLetter();
+        }
+
+        private Void SendItemReceivedLetter(NetworkItem item)
+        { 
+
+
+            Find.LetterStack.ReceiveLetter()
         }
 
         private void DisableOriginalResearch()
