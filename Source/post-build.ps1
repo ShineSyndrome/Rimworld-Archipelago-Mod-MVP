@@ -1,5 +1,8 @@
 #Put your local test mod assembly location here
-$rw_test_mod_assembly_dest = "C:\RIMWorld_Debug\Mods\Rimworld-Archipelago-Mod-MVP\Assemblies";
+$rw_test_mod_dest = "C:\RIMWorld_Debug\Mods\Rimworld-Archipelago-Mod-MVP";
+
+$assembly_path = $rw_test_mod_dest + "\Assemblies"
+$def_path = $rw_test_mod_dest + "\1.4\Defs"
 
 #Clean up library mods, the dll's already exist because of mod dependencies set in About.xml
 $delete = @("Harmony", "0Harmony", "HugsLib")
@@ -11,8 +14,6 @@ foreach ($item in $delete) {
         Remove-Item $path
     }
 }
-
-$items = Get-ChildItem -Path ../1.4/Defs/ResearchProjectDefs
 
 #Voodoo. Required to stop errors from .dll's being loaded in the wrong order.
 $items = Get-ChildItem -Path ../assemblies
@@ -26,9 +27,15 @@ foreach ($item in $items) {
     }
 }
 
-if ($rw_test_mod_assembly_dest)
+if ($rw_test_mod_dest)
 {
-	robocopy "../assemblies/" $rw_test_mod_assembly_dest /E
+	robocopy "../assemblies/" $assembly_path /E
+	
+	$old_defs = Get-ChildItem -Path $def_path
+	foreach ($item in $old_defs) {
+        $path = $def_path + "/${item}"
+		Remove-Item $path -recurse
+	}
+	
+	robocopy "../1.4/defs/" $def_path /E
 }
-
-
