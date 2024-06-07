@@ -114,19 +114,8 @@ namespace RimworldArchipelago.Client
                 Log.Message($"Received Item: {itemReceivedName}");
                 var networkItem = receivedItemsHelper.DequeueItem();
 
-                //def manager?
-                ComponentStateManager.ReceiveItem(networkItem);
+                DefManager.ProcessReceivedItem(networkItem);
             };
-
-            //Session.MessageLog.OnMessageReceived += (message) =>
-            //{
-            //    foreach (var part in message.Parts)
-            //    {
-            //        Find.LetterStack.ReceiveLetter(part.Text, part.Text, LetterDefOf.NeutralEvent);
-            //        Messages.Message(part.Text, MessageTypeDefOf.SilentInput, false);
-            //        Log.Message(part.Text);
-            //    }
-            //};
         }
 
         public void SendLocationCheck(string defName)

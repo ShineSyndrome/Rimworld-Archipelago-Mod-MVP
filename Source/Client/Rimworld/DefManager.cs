@@ -83,14 +83,28 @@ namespace RimworldArchipelago.Client.Rimworld
                 Find.ResearchManager.FinishProject(def);
             }
 
-            SendItemReceivedLetter();
+            SendItemReceivedLetter(item);
         }
 
-        private Void SendItemReceivedLetter(NetworkItem item)
-        { 
+        private void SendItemReceivedLetter(NetworkItem item)
+        {
+            var letterDef = LetterDefOf.NeutralEvent;
+            var title = new TaggedString("Item Received");
 
+            string itemName = string.Empty;
+            string body = string.Empty;
 
-            Find.LetterStack.ReceiveLetter()
+            if (ResearchLocations.AllResearchLocations.TryGetValue(item.Item, out itemName))
+            {
+                body = $"You have received your {itemName} research.";
+            }
+
+            if (string.IsNullOrEmpty(body))
+            {
+                throw new InvalidOperationException("Can't create message, item not found in dictionaries!");
+            }
+
+            Find.LetterStack.ReceiveLetter(title, new TaggedString(body), letterDef);
         }
 
         private void DisableOriginalResearch()
