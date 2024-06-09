@@ -103,7 +103,7 @@ namespace RimworldArchipelago.Client
                 .Where(l => l.IsResearchLocation);
             //setting up research according to locations and items
             this.DefManager.LoadResearchDefs(researchLocations);
-            //register hooks
+            RegisterSessionHooks();
         }
 
         private void RegisterSessionHooks()
