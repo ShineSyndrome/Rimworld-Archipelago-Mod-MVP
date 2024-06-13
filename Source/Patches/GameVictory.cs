@@ -10,7 +10,10 @@ namespace RimworldArchipelago.Patches
     {
         public static void Postfix()
         {
-            Main.Instance.TriggerGoalComplete();
+            if (Main.Instance.Connected)
+            {
+                Main.Instance.TriggerGoalComplete();
+            }
         }
     }
 }

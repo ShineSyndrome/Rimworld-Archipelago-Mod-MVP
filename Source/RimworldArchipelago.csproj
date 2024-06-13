@@ -35,7 +35,6 @@
   <ItemGroup>
     <Compile Include="Client\Data\ResearchLocations.cs" />
     <Compile Include="Client\Multiworld\HydratedLocation.cs" />
-    <Compile Include="Client\Rimworld\ArchipelagoLoader.cs" />
     <Compile Include="Client\Rimworld\ArchipelagoGameComponent.cs" />
     <Compile Include="Client\Rimworld\ArchipelagoWorldComponent.cs" />
     <Compile Include="Client\Multiworld\MultiWorldSessionManager.cs" />
@@ -44,7 +43,6 @@
     <Compile Include="Patches\GameVictory.cs" />
     <Compile Include="Patches\FinishProject.cs" />
     <Compile Include="Client\Main.cs" />
-    <Compile Include="Client\UI\ArchipelagoAlert.cs" />
     <Compile Include="Patches\MainMenu.cs" />
     <Compile Include="Patches\PatchTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -74,39 +74,6 @@ namespace RimworldArchipelago.Client.Rimworld
             }
         }
 
-        public void ProcessReceivedItem(NetworkItem item)
-        {
-            if (ResearchLocations.AllResearchLocations.ContainsKey(item.Item))
-            {
-                var researchName = ResearchLocations.AllResearchLocations[item.Item];
-                var def = DefDatabase<ResearchProjectDef>.GetNamed(researchName, true);
-                Find.ResearchManager.FinishProject(def);
-            }
-
-            SendItemReceivedLetter(item);
-        }
-
-        private void SendItemReceivedLetter(NetworkItem item)
-        {
-            var letterDef = LetterDefOf.NeutralEvent;
-            var title = new TaggedString("Item Received");
-
-            string itemName = string.Empty;
-            string body = string.Empty;
-
-            if (ResearchLocations.AllResearchLocations.TryGetValue(item.Item, out itemName))
-            {
-                body = $"You have received your {itemName} research.";
-            }
-
-            if (string.IsNullOrEmpty(body))
-            {
-                throw new InvalidOperationException("Can't create message, item not found in dictionaries!");
-            }
-
-            Find.LetterStack.ReceiveLetter(title, new TaggedString(body), letterDef);
-        }
-
         private void DisableOriginalResearch()
         {
             var originalResearch = DefDatabase<ResearchProjectDef>.AllDefs
@@ -146,6 +113,39 @@ The Archotech network spans beyond mortal reckoning. By lending your intelligenc
 
 These remote civilisations have strange and alien customs, but they will surely reciprocate aid given.
 ";
+        }
+
+        public void ProcessReceivedItem(NetworkItem item)
+        {
+            if (ResearchLocations.AllResearchLocations.ContainsKey(item.Item))
+            {
+                var researchName = ResearchLocations.AllResearchLocations[item.Item];
+                var def = DefDatabase<ResearchProjectDef>.GetNamed(researchName, true);
+                Find.ResearchManager.FinishProject(def);
+            }
+
+            SendItemReceivedLetter(item);
+        }
+
+        private void SendItemReceivedLetter(NetworkItem item)
+        {
+            var letterDef = LetterDefOf.NeutralEvent;
+            var title = new TaggedString("Item Received");
+
+            string itemName = string.Empty;
+            string body = string.Empty;
+
+            if (ResearchLocations.AllResearchLocations.TryGetValue(item.Item, out itemName))
+            {
+                body = $"You have received your {itemName} research.";
+            }
+
+            if (string.IsNullOrEmpty(body))
+            {
+                throw new InvalidOperationException("Can't create message, item not found in dictionaries!");
+            }
+
+            Find.LetterStack.ReceiveLetter(title, new TaggedString(body), letterDef);
         }
     }
 }

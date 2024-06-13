@@ -11,9 +11,9 @@ namespace RimworldArchipelago.Patches
     {
         public static void Postfix(ref ResearchProjectDef proj)
         {
-            if (Main.Instance.DefNameToArchipelagoId.ContainsKey(proj.defName))
+            if (Main.Instance.Connected)
             {
-                Main.Instance.SendLocationCheck(proj.defName);
+                Main.Instance.SendResearchLocationCheck(proj.defName);
             }
         }
     }

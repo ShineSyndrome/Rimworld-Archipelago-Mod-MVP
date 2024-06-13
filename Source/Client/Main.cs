@@ -1,9 +1,9 @@
 ﻿using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
+using RimworldArchipelago.Client.Data;
 using RimworldArchipelago.Client.Multiworld;
 using RimworldArchipelago.Client.Rimworld;
-using RimworldArchipelago.RimWorld;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -39,8 +39,6 @@ namespace RimworldArchipelago.Client
         public IDictionary<string, long> DefNameToArchipelagoId { get; } = new ConcurrentDictionary<string, long>();
         public IDictionary<long, RimWorldDef> ArchipeligoItemIdToRimWorldDef { get; } = new ConcurrentDictionary<long, RimWorldDef>();
         public struct RimWorldDef { public string DefName; public string DefType; public int Quantity; }
-
-        public ArchipelagoLoader ArchipelagoLoader { get; private set; }
         /******************************/
         public Main()
         {
@@ -118,10 +116,12 @@ namespace RimworldArchipelago.Client
             };
         }
 
-        public void SendLocationCheck(string defName)
+        public void SendResearchLocationCheck(string defName)
         {
-            Logger.Message($"Sending completed location {defName} to Archipelago");
-            MultiWorldSessionManager.Session.Locations.CompleteLocationChecks(DefNameToArchipelagoId[defName]);
+            Logger.Message($"Sending completed research location {defName} to Archipelago");
+            var vanillaDefName = defName.Substring(0, defName.LastIndexOf("Location"));
+            var id = MultiWorldSessionManager.AllHydratedLocations.Single(x => x.LocationName == defName).NetworkItem.Item;
+            MultiWorldSessionManager.Session.Locations.CompleteLocationChecks(new long[id]);
         }
 
         public void TriggerGoalComplete()
