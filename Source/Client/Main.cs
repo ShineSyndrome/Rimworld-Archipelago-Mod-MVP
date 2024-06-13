@@ -33,13 +33,7 @@ namespace RimworldArchipelago.Client
         public ArchipelagoSession Session { get => MultiWorldSessionManager.Session; }
         public string GetPlayerStamp => ComponentStateManager.GetMultiworldMarker();
         public string GetMWSeedStamp => ComponentStateManager.GetMWSeed();
-        public IEnumerable<HydratedLocation> AllLocations => MultiWorldSessionManager.AllHydratedLocations;
 
-        /************************************************/
-        public IDictionary<string, long> DefNameToArchipelagoId { get; } = new ConcurrentDictionary<string, long>();
-        public IDictionary<long, RimWorldDef> ArchipeligoItemIdToRimWorldDef { get; } = new ConcurrentDictionary<long, RimWorldDef>();
-        public struct RimWorldDef { public string DefName; public string DefType; public int Quantity; }
-        /******************************/
         public Main()
         {
             Instance = this;
@@ -48,18 +42,6 @@ namespace RimworldArchipelago.Client
         public void UpdatePlayerStamp()
         {
             ComponentStateManager.UpdateMultiworldMarker(PlayerSlot, MultiWorldSessionManager.Seed);
-        }
-
-        public void LogMessage(string message, bool error = false)
-        {
-            if (error)
-            {
-                Logger.Error(message);
-            }
-            else
-            {
-                Logger.Message(message);
-            }
         }
 
         public bool Connect(string address, string playerSlot, string password = null)
