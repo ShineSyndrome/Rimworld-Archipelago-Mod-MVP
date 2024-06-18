@@ -18,7 +18,7 @@ namespace RimworldArchipelago.Client.Multiworld
         {
             if (IsResearchLocation)
             {
-                return ResearchLocations.AllResearchLocations[NetworkItem.Item];
+                return ResearchLocations.AllResearchLocations[NetworkItem.Location];
             }
 
             throw new InvalidOperationException("Item number not handled.");

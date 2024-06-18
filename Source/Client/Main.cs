@@ -80,7 +80,7 @@ namespace RimworldArchipelago.Client
         public void LoadMultiworld()
         {
             var researchLocations = MultiWorldSessionManager.AllHydratedLocations
-                .Where(l => l.IsResearchLocation);
+                .Where(l => l.IsResearchLocation).ToList();
             //setting up research according to locations and items
             this.DefManager.LoadResearchDefs(researchLocations);
             RegisterSessionHooks();
@@ -100,10 +100,15 @@ namespace RimworldArchipelago.Client
 
         public void SendResearchLocationCheck(string defName)
         {
-            Logger.Message($"Sending completed research location {defName} to Archipelago");
-            var vanillaDefName = defName.Substring(0, defName.LastIndexOf("Location"));
-            var id = MultiWorldSessionManager.AllHydratedLocations.Single(x => x.LocationName == defName).NetworkItem.Item;
-            MultiWorldSessionManager.Session.Locations.CompleteLocationChecks(new long[id]);
+            var positionOfLocation = defName.LastIndexOf("Location");
+
+            if (positionOfLocation != -1)
+            {
+                Logger.Message($"Sending completed research location {defName} to Archipelago");
+                var vanillaDefName = defName.Substring(0, defName.LastIndexOf("Location"));
+                var id = MultiWorldSessionManager.AllHydratedLocations.Single(x => x.LocationName == vanillaDefName).NetworkItem.Item;
+                MultiWorldSessionManager.Session.Locations.CompleteLocationChecks(id);
+            }
         }
 
         public void TriggerGoalComplete()

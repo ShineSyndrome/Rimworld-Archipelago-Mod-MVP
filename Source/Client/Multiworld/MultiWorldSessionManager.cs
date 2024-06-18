@@ -13,7 +13,7 @@ namespace RimworldArchipelago.Client.Multiworld
         public ArchipelagoSession Session { get; private set; }
         public int CurrentPlayerId { get; private set; }
         public Dictionary<string, object> SlotData { get; private set; }
-        public IEnumerable<HydratedLocation> AllHydratedLocations { get; private set; }
+        public List<HydratedLocation> AllHydratedLocations { get; private set; }
         public Dictionary<long, string> Players { get; private set; }
         public string Seed { get; private set; }
 
@@ -66,12 +66,13 @@ namespace RimworldArchipelago.Client.Multiworld
         private async Task InitialLocationsScout(long[] allLocationIds)
         {
             AllHydratedLocations = (await Session.Locations.ScoutLocationsAsync(false, allLocationIds)).Locations
-                     .Select(l => new HydratedLocation { 
-                         NetworkItem = l, 
-                         SelfItem = l.Player == CurrentPlayerId, 
+                     .Select(l => new HydratedLocation
+                     {
+                         NetworkItem = l,
+                         SelfItem = l.Player == CurrentPlayerId,
                          ItemName = Session.Items.GetItemName(l.Item),
                          PlayerAlias = Session.Players.GetPlayerAlias(l.Player)
-                     });
+                     }).ToList();
         }
 
         public void SendGoalCompletePacket()
